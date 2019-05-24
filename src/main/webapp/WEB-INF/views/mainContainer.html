@@ -51,11 +51,14 @@
 				</div>
 				<div class="col-md-4 " style="background-color: yellow;background: url(img/shuru.png) no-repeat;height: 55px;"
                     th:style="'background-color: yellow;background: url('+@{/img/shuru.png}+') no-repeat;height: 55px;'">
-					<input type="text" placeholder="请输入关键字搜索" name="showkeycode" class="search_text" style="display: inline-block;margin-top: 17px;"/>
+                    <form th:action="@{/search/search}"  method="get" >
+                    <input type="text" placeholder="请输入关键字搜索" name="search" class="search_text" style="display: inline-block;margin-top: 17px;"/>
 					<span class="input-group-btn" style="display: inline-block;left: 70px;">
-						<button class="btn btn-default" type="button">
+						<button class="btn btn-default" type="submit">
 							<span class="glyphicon glyphicon-search"></span>
 						</button>
+                    </span>
+                    </form>
 				</div>
 			</div>
 		</div>
@@ -65,16 +68,16 @@
 			<img src="../static/img/两人信息.png" th:src="@{/img/两人信息.png}" style="width: 14%;margin-left: 100px;float: left;" />
 			<div class="tou" style="float: right;margin-right: 100px;width: 500px;">
 				<div th:if="${session.userIfo!=null}" class="guanz" style="display: inline-block;color: white;margin-top: 40px;float: right;margin-left: 10px;">
-					<a href="concernPage.html" th:href="@{/userConcern}+'?userId='+${session.userIfo.getUserId()}" target="_blank" class="gz" style="color: white;font-size: 1.5rem;">关注</a>
+					<a th:href="@{/userConcern}+'?userId='+${session.userIfo.getUserId()}" target="_blank" class="gz" style="color: white;font-size: 1.5rem;">关注</a>
 				</div>
                 <div th:if="${session.userIfo==null}" class="guanz" style="display: inline-block;color: white;margin-top: 40px;float: right;margin-left: 10px;">
-                    <a href="concernPage.html" th:href="@{/userConcern}" target="_blank" class="gz" style="color: white;font-size: 1.5rem;">关注</a>
+                    <a th:href="@{/userConcern}" target="_blank" class="gz" style="color: white;font-size: 1.5rem;">关注</a>
                 </div>
 				<img src="img/未登录头像02.png" th:src="@{/img/未登录头像02.png}" class="img-responsive" style="width:7%;display: inline-block;margin-top: 30px;float: right;"/>
 				
 				<div class="dl" style="display: inline-block;color: white;margin-top: 40px;float: right;margin-right: 10px;">
-                    <a href="loginPage.html" th:href="@{/home/personal}" th:if="${session.userIfo}" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">个人中心</a>
-                    <a href="loginPage.html" th:href="@{/home/userLogin}+'?backTo=/categories/container'" th:if="${session.userIfo}==null" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">登录</a>
+                    <a th:href="@{/home/personal}" th:if="${session.userIfo}" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">个人中心</a>
+                    <a th:href="@{/home/userLogin}+'?backTo=/categories/container'" th:if="${session.userIfo}==null" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">登录</a>
 				</div>
 			</div>
 		</div>		
@@ -82,7 +85,7 @@
 		<div class="biaoti" style="margin: 10px 0 0 20%;color: #5517C3;font-size: 1.8rem;font-family: 黑体;font-weight: bold;border-bottom: 2px solid #5517C3;width: 60%;">
 			详细信息
 			<img src="../img/三折.png" th:src="@{/img/三折.png}" style="width: 3%;margin-bottom: 4px;"/>
-			<a th:if="${session.userIfo!=null}" href="#" th:href="@{/addUserConcern}+'?userId='+${session.userIfo.getUserId()}" suda-uatrack="key=tblog_profile_v6&value=atten" suda-data="key=tblog_attention_click&value=5454843822"style="background-color: #5517C3;color: white;">
+			<a th:if="${session.userIfo!=null}" th:href="@{/addUserConcern}+'?userId='+${session.userIfo.getUserId()}" suda-uatrack="key=tblog_profile_v6&value=atten" suda-data="key=tblog_attention_click&value=5454843822"style="background-color: #5517C3;color: white;">
 				<em class="jia">+</em>
 				关注
 			</a>

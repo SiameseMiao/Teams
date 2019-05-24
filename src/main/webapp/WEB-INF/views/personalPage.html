@@ -47,13 +47,13 @@
 			<img src="../img/两人信息.png" th:src="@{/img/两人信息.png}" style="width: 14%;margin-left: 100px;float: left;" />
 			<div class="tou" style="float: right;margin-right: 100px;width: 500px;">
 				<div class="guanz" style="display: inline-block;color: white;margin-top: 40px;float: right;margin-left: 10px;">
-					<a href="concernPage.html" th:href="@{/userConcern}" target="_blank" class="gz" style="color: white;font-size: 1.5rem;">关注</a>
+					<a th:href="@{/userConcern}" target="_blank" class="gz" style="color: white;font-size: 1.5rem;">关注</a>
 				</div>
 				<img src="../img/未登录头像02.png" th:src="@{/img/未登录头像02.png}" class="img-responsive" style="width:7%;display: inline-block;margin-top: 30px;float: right;"/>
 
                 <div class="dl" style="display: inline-block;color: white;margin-top: 40px;float: right;margin-right: 10px;">
-                    <a href="loginPage.html" th:href="@{/home/logout}" th:if="${session.userIfo}" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">注销</a>
-                    <a href="loginPage.html" th:href="@{/home/userLogin}" th:if="${session.userIfo}==null" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">登录</a>
+                    <a th:href="@{/home/logout}" th:if="${session.userIfo}" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">注销</a>
+                    <a th:href="@{/home/userLogin}" th:if="${session.userIfo}==null" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">登录</a>
                 </div>
 			</div>
 		</div>

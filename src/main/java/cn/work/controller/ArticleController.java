@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -31,12 +30,5 @@ public class ArticleController {
         map.addAttribute("itemList",articleService.getAllArticles());
         return "categoriesPage";
     }
-    @RequestMapping(value = "/search",method=RequestMethod.GET)
-    public String search(Model map, @RequestParam String search){
-        map.addAttribute("itemList",articleService.searchByName(search));
-        System.out.println(articleService.searchByName(search));
-        return "searchPage";
-    }
-
 
 }

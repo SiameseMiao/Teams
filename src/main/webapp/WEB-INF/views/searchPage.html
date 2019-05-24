@@ -57,12 +57,14 @@
         </div>
         <div class="col-md-4 " style="background-color: yellow;background: url(../static/img/shuru.png) no-repeat;height: 55px;"
              th:style="'background-color: yellow;background: url('+@{/img/shuru.png}+') no-repeat;height: 55px;'">
-            <input type="text" placeholder="请输入关键字搜索" name="showkeycode" class="search_text" style="display: inline-block;margin-top: 17px;"/>
+            <form th:action="@{/search/search}"  method="get" >
+            <input type="text" placeholder="请输入关键字搜索" name="search" class="search_text" style="display: inline-block;margin-top: 17px;"/>
             <span class="input-group-btn" style="display: inline-block;left: 70px;">
 						<button class="btn btn-default" type="submit">
 							<span class="glyphicon glyphicon-search"></span>
 						</button>
             </span>
+            </form>
         </div>
     </div>
 </div>
@@ -72,13 +74,13 @@
     <img src="../img/两人信息.png" th:src="@{/img/两人信息.png}" style="width: 14%;margin-left: 100px;float: left;" />
     <div class="tou" style="float: right;margin-right: 100px;width: 500px;">
         <div class="guanz" style="display: inline-block;color: white;margin-top: 40px;float: right;margin-left: 10px;">
-            <a href="concernPage.html" th:href="@{/index.html}" target="_blank" class="gz" style="color: white;font-size: 1.5rem;">主页</a>
+            <a th:href="@{/index.html}" target="_blank" class="gz" style="color: white;font-size: 1.5rem;">主页</a>
         </div>
         <img src="../img/未登录头像02.png"  th:src="@{/img/未登录头像02.png}" class="img-responsive" style="width:7%;display: inline-block;margin-top: 30px;float: right;"/>
 
         <div class="dl" style="display: inline-block;color: white;margin-top: 40px;float: right;margin-right: 10px;">
-            <a href="loginPage.html" th:href="@{/home/personal}" th:if="${session.userIfo}" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">个人中心</a>
-            <a href="loginPage.html" th:href="@{/home/userLogin}+'?backTo=/search'" th:if="${session.userIfo}==null" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">登录</a>
+            <a th:href="@{/home/personal}" th:if="${session.userIfo}" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">个人中心</a>
+            <a th:href="@{/home/userLogin}+'?backTo=/search'" th:if="${session.userIfo}==null" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">登录</a>
         </div>
     </div>
 </div>

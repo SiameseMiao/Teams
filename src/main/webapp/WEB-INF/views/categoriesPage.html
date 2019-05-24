@@ -46,12 +46,14 @@
 				</div>
 				<div class="col-md-4 " style="background-color: yellow;background: url(../static/shuru.png) no-repeat;height: 55px;"
 				th:style="'background-color: yellow;background: url('+@{/img/shuru.png}+') no-repeat;height: 55px;'">
-					<input type="text" placeholder="请输入关键字搜索" name="showkeycode" class="search_text" style="display: inline-block;margin-top: 17px;"/>
+					<form th:action="@{/search/search}"  method="get" >
+					<input type="text" placeholder="请输入关键字搜索" name="search" class="search_text" style="display: inline-block;margin-top: 17px;"/>
 					<span class="input-group-btn" style="display: inline-block;left: 70px;">
 						<button class="btn btn-default" type="submit">
 							<span class="glyphicon glyphicon-search"></span>
 						</button>
 					</span>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -63,15 +65,15 @@
 			<img src="../static/img/两人信息.png" th:src="@{/img/两人信息.png}" style="width: 14%;margin-left: 100px;float: left;" />
 			<div class="tou" style="float: right;margin-right: 100px;width: 500px;">
 				<div class="guanz" style="display: inline-block;color: white;margin-top: 40px;float: right;margin-left: 10px;" th:if="${session.userIfo!=null}">
-                    <a href="concernPage.html" th:href="@{/userConcern}+'?id='+${session.userIfo.getUserId()}" target="_blank" class="gz" style="color: white;font-size: 1.5rem;">关注</a>
+                    <a th:href="@{/userConcern}+'?id='+${session.userIfo.getUserId()}" target="_blank" class="gz" style="color: white;font-size: 1.5rem;">关注</a>
 				</div>
                 <div class="guanz" style="display: inline-block;color: white;margin-top: 40px;float: right;margin-left: 10px;" th:if="${session.userIfo==null}">
-                    <a href="#" th:href="@{#}" target="_blank" class="gz" style="color: white;font-size: 1.5rem;">关注</a>
+                    <a th:href="@{#}" target="_blank" class="gz" style="color: white;font-size: 1.5rem;">关注</a>
                 </div>
 				<img src="../static/img/未登录头像02.png" th:src="@{/img/未登录头像02.png}" class="img-responsive" style="width:7%;display: inline-block;margin-top: 30px;float: right;"/>
 				<div class="dl" style="display: inline-block;color: white;margin-top: 40px;float: right;margin-right: 10px;">
-                    <a href="loginPage.html" th:href="@{/home/personal}" th:if="${session.userIfo}" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">个人中心</a>
-                    <a href="loginPage.html" th:href="@{/home/userLogin}+'?backTo=/categories'" th:if="${session.userIfo}==null" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">登录</a>
+                    <a th:href="@{/home/personal}" th:if="${session.userIfo}" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">个人中心</a>
+                    <a th:href="@{/home/userLogin}+'?backTo=/categories'" th:if="${session.userIfo}==null" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">登录</a>
 				</div>
 			</div>
 		</div>
@@ -81,7 +83,7 @@
 			<div class="dao" style="margin-left: 22%;color: black;margin-top: 10px;">
 					当前位置：
 
-					<a href="categoriesPage.html" style="color: black;">分类</a>
+					<a th:href="@{/categories}" style="color: black;">分类</a>
 					>>
 					<a href="#" style="color: black;">综合</a>
 				</div>
@@ -92,7 +94,7 @@
 						<div class="col-xs-3" style="margin-top: 20px;padding: 0;box-shadow: 0 0 20px darkgray;margin-right: 30px;height: 340px;" >
 							<div class="tu1" >
 								<img src="../static/img/挑战杯海报.png"  th:src="${item.getImgUrl()}" style="width: 100%;height: 190px;"/>
-								<a href="mainContainer.html" th:href="@{/categories/container}+'?itemId='+${item.getPkId()}" target="_blank">
+								<a th:href="@{/categories/container}+'?itemId='+${item.getPkId()}" target="_blank">
 									<p th:text="${item.getName()}" style="color: black;font-size: 1.7rem;font-family: 黑体;padding: 15px;height: 80px;">2019年第十六届“挑战杯”全国大学生课外学术科技作品竞赛</p></a>
 								<p  style="color: #5517C3;font-size: 2rem;font-family: 黑体;font-weight:bold;padding: 0 0 15px 0px;line-height: 1px;display: inline-block;float: right;margin-right:10px ;" th:text="${item.getState()}">报名中</p>
 							</div>
