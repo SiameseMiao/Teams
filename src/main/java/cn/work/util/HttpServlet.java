@@ -1,5 +1,6 @@
 package cn.work.util;
 
+import org.apache.commons.lang3.Validate;
 
 import javax.servlet.ServletRequest;
 import java.util.Enumeration;
@@ -25,6 +26,7 @@ public class HttpServlet {
      * </pre>
      */
     public static Map<String, Object> getParametersStartingWith(ServletRequest request, String prefix) {
+        Validate.notNull(request, "Request must not be null");
         Enumeration paramNames = request.getParameterNames();
         Map<String, Object> params = new TreeMap<String, Object>();
         if (prefix == null) {
