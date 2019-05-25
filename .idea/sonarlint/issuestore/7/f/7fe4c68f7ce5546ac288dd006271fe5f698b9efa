@@ -1,0 +1,13 @@
+
+dsquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(€òÅæøÿÿÿÿ
+Tsquid:S1854H"8Remove this useless assignment to local variable "user".(’µÆÕûÿÿÿÿ
+dsquid:S4488""HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(åßÃöùÿÿÿÿ
+dsquid:S11921"HDefine a constant instead of duplicating this literal "userIfo" 4 times.(§êÔÙøÿÿÿÿ
+Xsquid:S24411"<Make "Accout" serializable or don't store it in the session.(§êÔÙøÿÿÿÿ
+fsquid:S4488,"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ãèïûÿÿÿÿ
+asquid:S44888"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ÚŞ•
+qsquid:S1192J"UDefine a constant instead of duplicating this literal "redirect:/index.html" 4 times.(™ôÓÕúÿÿÿÿ
+Xsquid:S2441="<Make "Accout" serializable or don't store it in the session.(³¿¡Âıÿÿÿÿ
+dsquid:S4488&"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(€İ¯Íüÿÿÿÿ
+Esquid:S1481H")Remove this unused "user" local variable.(’µÆÕûÿÿÿÿ
+\squid:S4684W"@Replace this persistent entity with a simple POJO or DTO object.(›¶Øşÿÿÿÿ

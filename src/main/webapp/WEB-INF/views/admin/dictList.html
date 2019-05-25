@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/dict/search}"  method="post" >
+    <input type="text" placeholder="请输入关键字搜索" name="type" class="search_text"
+           style="display: inline-block;outline:none;margin-top: 17px;margin-left: 20px; "/>
+    <span class="input-group-btn" style="display: inline-block;left: 45px;" >
+						<button class="btn btn-default" type="submit" style="outline: none">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+</form>
+<table id="contentTable" class="table table-striped table-hover">
+    <thead><tr>
+        <th>序号</th>
+        <th>字典名称</th>
+        <th>属性编码</th>
+        <th>属性名称</th>
+        <th>属性状态</th>
+        <th>管理</th></tr></thead>
+    <tbody>
+        <tr th:each="dict,iterStat:${dicts}">
+           <td th:text="${iterStat.count}">1</td>
+            <td th:text="${dict.type}">2</td>
+            <td th:text="${dict.code}">3</td>
+            <td th:text="${dict.name}">4</td>
+            <td th:text="${dict.status.desc}">5</td>
+            <td> <a th:href="@{/dict/update(id=${dict.dictId})}">编辑</a>  |   <a th:href="@{/dict/delete(id=${dict.dictId})}" class="cla_delete">删除</a>
+            </td>
+        </tr>
+    </tbody>
+    <a th:href="@{/dict/create}">添加</a>
+</table>
+</body>
+</html>

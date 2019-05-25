@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <p th:text="${action}">1</p>
+<form th:method="post" th:action="@{/dict/action}"  th:object="${dict}" >
+    <input type="hidden" name="op" th:value="${action}">
+    <input type="hidden" name="dictId" th:value="*{dictId}">
+    <p>字典名称：<input type="text" name="type" th:value="*{type}"></p>
+    <p>属性编码：<input type="text" name="code" th:value="*{code}"></p>
+    <p>属性名称：<input type="text"  name="name" th:value="*{name}"></p>
+    <p><button type="submit">保存</button></p>
+</form>
+</div>
+</body>
+</html>
