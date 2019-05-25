@@ -43,7 +43,7 @@ public  class DictServiceImpl implements DictService {
     };
     @Override
     public List<Dict> getDict(){
-        return dictDao.findAllByOrderBySortDesc();
+        return dictDao.findAllByOrderByDictIdAsc();
     };
     @Override
     public Dict getDictById(int id){
@@ -54,8 +54,8 @@ public  class DictServiceImpl implements DictService {
         dictDao.delete(id);
     };
     @Override
-    public float getMaxSort() {
-        Dict dict = dictDao.findFirstByOrderBySortDesc();
+    public float getMaxSort(String type) {
+        Dict dict = dictDao.findFirstByTypeOrderBySortDesc(type);
         if (dict == null) {
             return 0;
         } else {

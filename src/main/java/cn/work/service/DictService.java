@@ -18,5 +18,5 @@ public  interface DictService {
     public List<Dict> getDict();
     public Dict getDictById(int id);
     public void delete(int id);
-    public float getMaxSort();
+    public float getMaxSort(String type);
 }

@@ -51,7 +51,7 @@ public class DictController {
     @PostMapping(value = "action")
     public String updateDict(@Valid String op,@Valid Dict dict, Model model, HttpServletRequest request) {
         if(op=="create"||op.equals("create")){
-        float sort = dictService.getMaxSort();
+        float sort = dictService.getMaxSort(dict.getType());
         dictService.insert(dict.getType(), dict.getCode(), dict.getName(),sort+1,Constants.Status.ENABLE);}
         else if(op=="update"||op.equals("update")){
             dictService.update(dict.getDictId(),dict.getType(), dict.getCode(), dict.getName(),Constants.Status.ENABLE);

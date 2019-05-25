@@ -1,7 +1,6 @@
 package cn.work.dao;
 
 import cn.work.entity.Dict;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +20,7 @@ public interface DictDao extends CrudRepository<Dict,Integer> {
      * @param type type
      * @return List<Dict>
      */
-    @Query("from Dict d where d.type=?1 order by d.sort asc ")
+   // @Query("from Dict d where d.type=?1 order by d.sort asc ")
     List<Dict> findByTypeOrderBySort(String type);
     /**
      * fetch data from Dict d
@@ -29,12 +28,14 @@ public interface DictDao extends CrudRepository<Dict,Integer> {
      * @return List<Dict>
      */
    // @Query("from Dict d order by d.sort asc")
-    List<Dict> findAllByOrderBySortDesc();
+    List<Dict> findAllByOrderByDictIdAsc();
     /**
      * fetch data from Dict d
      *
+     * @param type type
      * @return Dict
      */
    // @Query("from Dict d order by d.sort asc")
-    Dict findFirstByOrderBySortDesc();
+    Dict findFirstByTypeOrderBySortDesc(String type);
+    //Dict findFirstByOrderBySortDesc();
 }
