@@ -1,8 +1,11 @@
 package cn.work.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * User Class
@@ -16,8 +19,7 @@ import javax.persistence.*;
 public class User {
     @Id
     @Column(name = "user_id")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")//定于主键的生成策略
-    @GeneratedValue(generator = "system-uuid")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 
     @Column(name = "user_name")
