@@ -13,6 +13,7 @@
     <p>字典名称：<input type="text" name="type" th:value="*{type}"></p>
     <p>属性编码：<input type="text" name="code" th:value="*{code}"></p>
     <p>属性名称：<input type="text"  name="name" th:value="*{name}"></p>
+    <p th:if="${action}=='update'">属性排序：<input type="text"  name="sort" th:value="*{sort}"></p>
     <p><button type="submit">保存</button></p>
 </form>
 </div>

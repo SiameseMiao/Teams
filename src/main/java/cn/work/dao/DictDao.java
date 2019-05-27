@@ -20,14 +20,12 @@ public interface DictDao extends CrudRepository<Dict,Integer> {
      * @param type type
      * @return List<Dict>
      */
-   // @Query("from Dict d where d.type=?1 order by d.sort asc ")
     List<Dict> findByTypeOrderBySort(String type);
     /**
      * fetch data from Dict d
      *
      * @return List<Dict>
      */
-   // @Query("from Dict d order by d.sort asc")
     List<Dict> findAllByOrderByDictIdAsc();
     /**
      * fetch data from Dict d
@@ -35,7 +33,6 @@ public interface DictDao extends CrudRepository<Dict,Integer> {
      * @param type type
      * @return Dict
      */
-   // @Query("from Dict d order by d.sort asc")
     Dict findFirstByTypeOrderBySortDesc(String type);
     //Dict findFirstByOrderBySortDesc();
 }

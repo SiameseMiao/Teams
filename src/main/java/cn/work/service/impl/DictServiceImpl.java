@@ -30,11 +30,19 @@ public  class DictServiceImpl implements DictService {
         dictDao.save(dict);
     };
     @Override
-    public void update(int id,String type, String code, String name, Constants.Status status){
+    public void update(int id,String type, String code, String name, float sort, Constants.Status status){
         Dict dict = getDictById(id);
         dict.setType(type);
         dict.setCode(code);
         dict.setName(name);
+        dict.setSort(sort);
+        dict.setStatus(status);
+        dictDao.save(dict);
+    };
+    @Override
+    public void forbid(int id,  Constants.Status status){
+        Dict dict = getDictById(id);
+        dict.setStatus(status);
         dictDao.save(dict);
     };
     @Override

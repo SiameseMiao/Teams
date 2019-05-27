@@ -20,6 +20,7 @@
         <th>字典名称</th>
         <th>属性编码</th>
         <th>属性名称</th>
+        <th>属性排序</th>
         <th>属性状态</th>
         <th>管理</th></tr></thead>
     <tbody>
@@ -28,8 +29,9 @@
             <td th:text="${dict.type}">2</td>
             <td th:text="${dict.code}">3</td>
             <td th:text="${dict.name}">4</td>
-            <td th:text="${dict.status.desc}">5</td>
-            <td> <a th:href="@{/dict/update(id=${dict.dictId})}">编辑</a>  |   <a th:href="@{/dict/delete(id=${dict.dictId})}" class="cla_delete">删除</a>
+            <td th:text="${dict.sort}">5</td>
+            <td th:text="${dict.status.desc}">6</td>
+            <td> <a th:if="${dict.status}==1" th:href="@{/dict/forbid(id=${dict.dictId})}">禁用</a> <a th:if="${dict.status}=='0'" th:href="@{/dict/forbid(id=${dict.dictId})}">启用</a> |  <a th:href="@{/dict/update(id=${dict.dictId})}">编辑</a>  |   <a th:href="@{/dict/delete(id=${dict.dictId})}" class="cla_delete">删除</a>
             </td>
         </tr>
     </tbody>

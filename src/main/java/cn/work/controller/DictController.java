@@ -54,7 +54,7 @@ public class DictController {
         float sort = dictService.getMaxSort(dict.getType());
         dictService.insert(dict.getType(), dict.getCode(), dict.getName(),sort+1,Constants.Status.ENABLE);}
         else if(op=="update"||op.equals("update")){
-            dictService.update(dict.getDictId(),dict.getType(), dict.getCode(), dict.getName(),Constants.Status.ENABLE);
+            dictService.update(dict.getDictId(),dict.getType(), dict.getCode(), dict.getName(), dict.getSort(),Constants.Status.ENABLE);
         }
         return "redirect:/dict/";
     }
@@ -66,16 +66,16 @@ public class DictController {
         model.addAttribute("action", "update");
         return "admin/dictNew";
     }
-    //@PostMapping("update")
-    //public String updateDict(@Valid Dict dict, Model model, HttpServletRequest request) {
-    //    int dictId=dict.getId();
-    //    Dict newDict =  dictService.getDictById(dictId);
-    //    newDict.setType(dict.getType());
-    //    newDict.setCode(dict.getCode());
-    //    newDict.setName(dict.getName());
-    //    dictService.update(newDict);
-    //    return "redirect:/dict/";
-    //}
+    @GetMapping("forbid")
+    public String forbidDict(ServletRequest request, RedirectAttributes redirectAttributes, Model model) {
+        int dictId = Integer.valueOf(request.getParameter("id"));
+        Dict dict =  dictService.getDictById(dictId);
+        if(dict.getStatus()==Constants.Status.DISABLE)
+            dictService.forbid(dict.getDictId(),Constants.Status.ENABLE);
+        else
+            dictService.forbid(dict.getDictId(),Constants.Status.DISABLE);
+        return "redirect:/dict/";
+    }
     @RequestMapping(value = "delete")
     public String delete(ServletRequest request, RedirectAttributes redirectAttributes) {
         int dictId = Integer.valueOf(request.getParameter("id"));
