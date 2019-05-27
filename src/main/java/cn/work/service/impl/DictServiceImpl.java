@@ -50,6 +50,10 @@ public  class DictServiceImpl implements DictService {
         return dictDao.findByTypeOrderBySort(type);
     };
     @Override
+    public List<Dict> getDictByTypeAndStatus(String type,Constants.Status status){
+        return dictDao.findByTypeAndStatusOrderBySortAsc(type,status);
+    };
+    @Override
     public List<Dict> getDict(){
         return dictDao.findAllByOrderByDictIdAsc();
     };

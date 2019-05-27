@@ -16,6 +16,7 @@ public  interface DictService {
     public void update(int id,String type, String code, String name, float sort, Constants.Status status);
     public void forbid(int i, Constants.Status status);
     public List<Dict> getDictByType(String type);
+    public List<Dict> getDictByTypeAndStatus(String type,Constants.Status status);
     public List<Dict> getDict();
     public Dict getDictById(int id);
     public void delete(int id);

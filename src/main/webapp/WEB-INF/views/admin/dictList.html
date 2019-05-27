@@ -31,11 +31,12 @@
             <td th:text="${dict.name}">4</td>
             <td th:text="${dict.sort}">5</td>
             <td th:text="${dict.status.desc}">6</td>
-            <td> <a th:if="${dict.status}==1" th:href="@{/dict/forbid(id=${dict.dictId})}">禁用</a> <a th:if="${dict.status}=='0'" th:href="@{/dict/forbid(id=${dict.dictId})}">启用</a> |  <a th:href="@{/dict/update(id=${dict.dictId})}">编辑</a>  |   <a th:href="@{/dict/delete(id=${dict.dictId})}" class="cla_delete">删除</a>
+            <td> <a th:href="@{/dict/forbid(id=${dict.dictId})}" th:text="(${dict.status.value()}=='1')?'禁用':'启用'">7</a> |  <a th:href="@{/dict/update(id=${dict.dictId})}">编辑</a>  |   <a th:href="@{/dict/delete(id=${dict.dictId})}" class="cla_delete">删除</a>
             </td>
         </tr>
     </tbody>
     <a th:href="@{/dict/create}">添加</a>
+    <p><a th:href="@{/dict/new}">添加文章</a></p>
 </table>
 </body>
 </html>

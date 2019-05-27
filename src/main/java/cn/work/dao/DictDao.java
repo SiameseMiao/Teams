@@ -1,6 +1,7 @@
 package cn.work.dao;
 
 import cn.work.entity.Dict;
+import cn.work.util.Constants;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -34,5 +35,12 @@ public interface DictDao extends CrudRepository<Dict,Integer> {
      * @return Dict
      */
     Dict findFirstByTypeOrderBySortDesc(String type);
-    //Dict findFirstByOrderBySortDesc();
+    /**
+     * fetch data from Dict d
+     *
+     * @param type type
+     * @param status status
+     * @return List<Dict>
+     */
+    List<Dict> findByTypeAndStatusOrderBySortAsc(String type, Constants.Status status);
 }

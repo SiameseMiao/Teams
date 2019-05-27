@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>分类：<select name="type"><option th:each="p:${type}" th:text="${p.name}"></option></select></p>
+<p>级别：<select name="grade"><option th:each="p:${grade}" th:text="${p.name}"></select> </p>
+</body>
+</html>

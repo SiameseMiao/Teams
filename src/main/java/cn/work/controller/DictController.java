@@ -70,10 +70,10 @@ public class DictController {
     public String forbidDict(ServletRequest request, RedirectAttributes redirectAttributes, Model model) {
         int dictId = Integer.valueOf(request.getParameter("id"));
         Dict dict =  dictService.getDictById(dictId);
-        if(dict.getStatus()==Constants.Status.DISABLE)
-            dictService.forbid(dict.getDictId(),Constants.Status.ENABLE);
-        else
-            dictService.forbid(dict.getDictId(),Constants.Status.DISABLE);
+        if(dict.getStatus()==Constants.Status.DISABLE){
+            dictService.forbid(dict.getDictId(),Constants.Status.ENABLE);}
+        else{
+            dictService.forbid(dict.getDictId(),Constants.Status.DISABLE);}
         return "redirect:/dict/";
     }
     @RequestMapping(value = "delete")
@@ -88,5 +88,12 @@ public class DictController {
         redirectAttributes.addFlashAttribute("message", message);
         return "redirect:/dict/";
     }
-
+    @GetMapping(value = "new")
+    public String newArticle(Model model) {
+        List<Dict> dict1=dictService.getDictByTypeAndStatus("类别",Constants.Status.ENABLE);
+        List<Dict> dict2=dictService.getDictByTypeAndStatus("级别",Constants.Status.ENABLE);
+        model.addAttribute("type", dict1);
+        model.addAttribute("grade", dict2);
+        return "admin/articleNew";
+    }
 }
