@@ -9,6 +9,16 @@
     display: inline-block;
     margin-left: 30px;
  }
+ .nav a:hover{
+     color:palevioletred;
+ }
+ .jump{
+     margin-left: 50px;
+     font-size:20px ;
+     color: #000;
+
+ }
+
 .r_nav{
     float: right;
     margin-right: 30px;
