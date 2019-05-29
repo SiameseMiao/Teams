@@ -1,0 +1,45 @@
+.position{
+
+}
+
+
+
+.outside{
+    font-size:20px;
+    border:3px solid gray;
+    width:600px;
+    height:430px;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+
+}
+.tips{
+    margin-left:10px;
+    margin-right:10px;
+    border-bottom: 3px black solid;
+    height:50px;
+    line-height:50px;
+}
+.infor{
+    line-height:50px;
+    margin-left:10px;
+}
+.border{
+    width:500px;
+    height:40px;
+}
+.submit{
+    width:100px;
+    height:45px;
+    border-radius: 15px;
+    background:palevioletred;
+    color:white;
+    font-size:20px;
+    float: right;
+}
