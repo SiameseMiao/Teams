@@ -17,4 +17,5 @@ public interface UserService {
     public User getUserById(int id);
     public Accout checkAccount(String username, String password);
     public void delete(int id);
+    public List<User> getAllUsers();
 }

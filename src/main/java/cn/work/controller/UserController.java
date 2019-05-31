@@ -45,6 +45,9 @@ public class UserController {
     public String login(@Valid Accout accout, Model model, HttpServletRequest request){
         accout = userService.checkAccount(accout.getUserName(),accout.getUserPwd());
         if (accout != null){
+            if(accout.getUserName().equals("admin")) {
+                return "redirect:/manager";
+            }
             model.addAttribute(accout);
             request.getSession(true).setAttribute("userIfo",accout);
             return "redirect:"+backToUrl;
@@ -73,21 +76,7 @@ public class UserController {
         request.getSession().removeAttribute("userIfo");
         return "redirect:/index.html";
     }
-    @RequestMapping("/delete")
-    public String delete(int id) {
-        userService.delete(id);
-        return "redirect:/index.html";
-    }
-    @RequestMapping("/save")
-    public String save(@Valid Accout newUser) {
-        userService.insertT(newUser.getUserName(),newUser.getUserPwd(),newUser.getUserPhone(),newUser.getUserEmail());
-        return "redirect:/index.html";
-    }
-    @RequestMapping("/update")
-    public String update(User newUser) {
-        userService.updateT(newUser);
-        return "redirect:/index.html";
-    }
+
 
 
 

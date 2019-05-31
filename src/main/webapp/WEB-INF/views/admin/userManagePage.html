@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>用户管理页面</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/userManagePage.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/userEdit.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}" href="../../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/userManagePage.css}" href="../../static/css/userManagePage.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/userEdit.css}"href="../../static/css/userEdit.css">
 
 
 </head>
@@ -18,7 +18,7 @@
        <a href="resourceStore.html" class="jump">资源存储</a>
 
         <div class="r_nav">
-            <form method="" name="" >
+            <form method=""th:method="@{/search}" name="" >
                 <input type="text" placeholder="请输入搜索内容" class="search">
                 <input type="submit" value="搜索" class="button" >
             </form>
@@ -28,7 +28,7 @@
 
 
 <div class="table">
-    <table class="table1">
+    <table class="table1" >
         <tr>
             <th>姓名</th>
             <th>密码</th>
@@ -36,96 +36,17 @@
             <th>邮箱</th>
             <th>编辑</th>
             <th>删除</th>
-            <th><a  name="popBox" style="cursor:pointer;" onclick="popBox()">添加</a></th>
+            <th><a  name="popBox"   style="cursor:pointer;" onclick="popBox()">添加</a></th>
         </tr>
-        <tr>
-            <td>张三三三</td>
-            <td>密码密码密码</td>
-            <td>手机密码密码密码密码</td>
-            <td>邮箱密码密码密码密码</td>
+        <tr th:each="user:${userList}">
+            <td th:text="${user.getUserName()}">张三三三</td>
+            <td th:text="${user.getUserPwd()}">密码密码密码</td>
+            <td th:text="${user.getUserPhone()}">手机密码密码密码密码</td>
+            <td th:text="${user.getUserEmail()}">邮箱密码密码密码密码</td>
 
-            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox()">编辑</a></td>
-            <td><a href="">删除</a></td>
+            <td><a  name="popBox"  style="cursor:pointer;" onclick="popBox()">编辑</a></td>
+            <td><a href="#" th:href="@{/delete}+'?userId='+${user.getUserId()}">删除</a></td>
 
-        </tr>
-        <tr>
-            <td>李四四四</td>
-            <td>密码密码密码密码</td>
-            <td>手机密码密码密码密码</td>
-            <td>邮箱密码密码密码密码</td>
-
-            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox()">编辑</a></td>
-            <td><a href="">删除</a></td>
-        </tr>
-        <tr>
-            <td>随便不至</td>
-            <td>密码密码密码密码</td>
-
-            <td>手机密码密码密码密码</td>
-            <td>邮箱密码密码密码密码</td>
-
-            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox()">编辑</a></td>
-            <td><a href="">删除</a></td>
-        </tr>
-        <tr>
-            <td>哈哈哈哈</td>
-            <td>密码密码密码密码</td>
-
-            <td>手机密码密码密码密码</td>
-            <td>邮箱密码密码密码密码</td>
-
-            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox()">编辑</a></td>
-            <td><a href="">删除</a></td>
-        </tr>
-        <tr>
-            <td>一二三四</td>
-            <td>密码密码密码密码</td>
-
-            <td>手机密码密码密码密码</td>
-            <td>邮箱密码密码密码密码</td>
-
-            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox()">编辑</a></td>
-            <td><a href="">删除</a></td>
-        </tr>
-        <tr>
-            <td>一二三四</td>
-            <td>密码密码密码密码</td>
-
-            <td>手机密码密码密码密码</td>
-            <td>邮箱密码密码密码密码</td>
-
-            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox()">编辑</a></td>
-            <td><a href="">删除</a></td>
-        </tr>
-        <tr>
-            <td>一二三四</td>
-            <td>密码密码密码密码</td>
-
-            <td>手机密码密码密码密码</td>
-            <td>邮箱密码密码密码密码</td>
-
-            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox()">编辑</a></td>
-            <td><a href="">删除</a></td>
-        </tr>
-        <tr>
-            <td>一二三四</td>
-            <td>密码密码密码密码</td>
-
-            <td>手机密码密码密码密码</td>
-            <td>邮箱密码密码密码密码</td>
-
-            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox()">编辑</a></td>
-            <td><a href="">删除</a></td>
-        </tr>
-        <tr>
-            <td>一二三四</td>
-            <td>密码密码密码密码</td>
-
-            <td>手机密码密码密码密码</td>
-            <td>邮箱密码密码密码密码</td>
-
-            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox()">编辑</a></td>
-            <td><a href="">删除</a></td>
         </tr>
     </table>
 </div>
@@ -140,31 +61,23 @@
             <div class="tips">
             个人资料卡
             </div>
-        <form action="" method="post">
+        <form action="#" th:action="@{/save}" method="post">
             <table class="infor">
                 <tr>
-                    <td><label for="username">姓名：</label></td>
-                    <td><input  type="text"  name="username" id="username" class="border"/></td>
+                    <td><label for="username" >姓名：</label></td>
+                    <td><input  type="text"  name="userName" id="username" class="border"/></td>
                 </tr>
                 <tr>
                     <td><label for="password">密码：</label></td>
-                    <td><input  type="text"  name="password" id="password" class="border"/></td>
-                </tr>
-                <tr>
-                    <td><label for="age">年龄：</label></td>
-                    <td><input  type="text"  name="age" id="age" class="border"/></td>
+                    <td><input  type="text"  name="userPwd" id="password" class="border"/></td>
                 </tr>
                 <tr>
                     <td><label for="tel">手机：</label></td>
-                    <td><input  type="text"  name="tel" id="tel" class="border"/></td>
+                    <td><input  type="text"  name="userPhone" id="tel" class="border"/></td>
                 </tr>
                 <tr>
                     <td><label for="email">邮箱：</label></td>
-                    <td><input  type="text"  name="email" id="email" class="border"/></td>
-                </tr>
-                <tr>
-                    <td><label for="intro">简介：</label></td>
-                    <td><input  type="text"  name="intro" id="intro" class="border"/></td>
+                    <td><input  type="text"  name="userEmail" id="email" class="border"/></td>
                 </tr>
                 <tr>
                     <td></td>

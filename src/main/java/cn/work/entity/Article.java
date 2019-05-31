@@ -24,6 +24,16 @@ public class Article {
     private  String state;
     @Column(name = "article_img_url")
     private  String imgUrl;
+    @Column(name="article_rank")
+    private String rank;
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
 
     public String getImgUrl() {
         return imgUrl;
