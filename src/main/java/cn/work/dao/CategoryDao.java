@@ -12,5 +12,6 @@ import java.util.List;
  */
 @Repository
 public interface CategoryDao extends CrudRepository<Category, Integer> {
+    @Override
     public List<Category> findAll();
 }

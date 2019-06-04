@@ -21,7 +21,7 @@ public class Dict {
     @Id
     @Column(name = "dict_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private  int dictId;
+    private int dictId;
     @Column(name = "dict_type")
     private String type;
     @Column(name = "dict_code")

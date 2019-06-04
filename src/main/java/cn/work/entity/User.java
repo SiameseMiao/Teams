@@ -8,12 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * User Class
-         *
-         * @author 刘畅
-        * @version 2019/5/24
-        */
-
+ * User Class @author 刘畅 @version 2019/5/24
+ */
 @Entity
 @Table(name = "T_USER")
 public class User {
@@ -21,16 +17,12 @@ public class User {
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
-
     @Column(name = "user_name")
     private String userName;
-
     @Column(name = "user_pwd")
     private String userPwd;
-
     @Column(name = "user_phone")
     private String userPhone;
-
     @Column(name = "user_email")
     private String userEmail;
 

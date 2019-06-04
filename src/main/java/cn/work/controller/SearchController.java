@@ -1,6 +1,6 @@
 package cn.work.controller;
 
-import cn.work.service.ArticleService;
+import cn.work.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/search")
 public class SearchController {
     @Autowired
-    ArticleService articleService;
+    CompetitionService articleService;
     @RequestMapping(value = "/search",method= RequestMethod.GET)
     public String search(Model map, @RequestParam String search){
-        map.addAttribute("itemList",articleService.searchByName(search));
-        System.out.println(articleService.searchByName(search));
+        map.addAttribute("itemList",articleService.getAllCompetitionsByName(search));
+        System.out.println(articleService.getAllCompetitionsByName(search));
         return "searchPage";
     }
 }

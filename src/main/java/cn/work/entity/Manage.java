@@ -5,22 +5,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- *
- * @author 刘畅
- * @version 2019/5/24
+ * @author 刘畅 @version 2019/5/24
  */
 @Entity
 @Table(name = "T_MANNAGE")
 public class Manage {
-         @Id
-      private  int pkId;
-      private  String name;
-      private  String alias;
-      private  String code;
-      private  String sort;
-      private  String state;
-      private  String priId;
-      private  String orgCode;
+    @Id
+    private int pkId;
+    private String name;
+    private String alias;
+    private String code;
+    private String sort;
+    private String state;
+    private String priId;
+    private String orgCode;
 
     public void setAlias(String alias) {
         this.alias = alias;
@@ -54,7 +52,6 @@ public class Manage {
         return code;
     }
 
-
     public String getPriId() {
         return priId;
     }
@@ -74,7 +71,6 @@ public class Manage {
     public void setCode(String code) {
         this.code = code;
     }
-
 
     public void setPriId(String priId) {
         this.priId = priId;

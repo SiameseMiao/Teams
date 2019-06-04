@@ -1,7 +1,7 @@
 package cn.work.controller;
 
 
-import cn.work.service.ArticleService;
+import cn.work.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ArticleController {
     @Autowired
-    ArticleService articleService;
+    CompetitionService competitionService;
     @RequestMapping(value = "",method = RequestMethod.GET)
     public String indexfirst(){
         return "index";
@@ -27,7 +27,7 @@ public class ArticleController {
     }
     @RequestMapping(value = "/categories",method = RequestMethod.GET)
     public String categories(Model map){
-        map.addAttribute("itemList",articleService.getAllArticles());
+        map.addAttribute("itemList",competitionService.getAllCompetitions());
         return "categoriesPage";
     }
 
