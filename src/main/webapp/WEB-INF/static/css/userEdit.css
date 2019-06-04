@@ -8,7 +8,7 @@
     font-size:20px;
     border:3px solid gray;
     width:600px;
-    height:430px;
+    height:350px;
     overflow: auto;
     margin: auto;
     position: absolute;
@@ -31,7 +31,7 @@
     margin-left:10px;
 }
 .border{
-    width:500px;
+    width:400px;
     height:40px;
 }
 .submit{
