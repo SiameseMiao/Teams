@@ -39,3 +39,29 @@
     text-decoration: none;
     color: #2D2C3B;
 }
+
+#popBox1 {
+    display: none;
+    background-color: #FFFFFF;
+    z-index: 11;
+    width: 550px;
+    height: 350px;
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    margin:auto;
+}
+#popBox1 .close{
+    text-align: right;
+    margin-right: 5px;
+
+}
+
+/*关闭按钮*/
+#popBox1 .close a {
+    text-decoration: none;
+    color: #2D2C3B;
+}
+
