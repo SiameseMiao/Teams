@@ -1,0 +1,172 @@
+a{
+    color: #000;
+}
+.nav{
+    width: 100%;
+    height: 90px;
+    line-height:90px;
+    box-shadow:0 5px 10px gainsboro;
+
+}h2{
+     font-size: 30px;
+     display: inline-block;
+     margin-left: 30px;
+ }
+.nav a:hover{
+    color:palevioletred;
+}
+.jump{
+    margin-left: 50px;
+    font-size:20px ;
+    color: #000;
+
+}
+
+.r_nav{
+    float: right;
+    margin-right: 30px;
+
+}
+.search{
+    border-radius: 15px;
+    border-color: #f0f0f0;
+    width: 250px;
+    height: 35px;
+}
+.button{
+    border-radius: 15px;
+    border-color: #f0f0f0;
+    width: 65px;
+    height: 35px;
+    background-color: palevioletred;
+    color: #f0f0f0;
+    letter-spacing: 3px;
+    font-size: 15px;
+
+}
+
+
+.table{
+    margin-top: 20px;
+    font-size: 20px;
+    border-collapse:separate;
+    border-spacing:30px 30px;
+
+}
+.table1
+{
+    border-collapse:separate;
+    border-spacing:30px 30px;
+    margin:0 auto ;
+}
+
+
+/*背景层*/
+#popLayer {
+    display: none;
+    background-color: #B3B3B3;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    -moz-opacity: 0.4;
+    opacity:.40;
+    filter: alpha(opacity=40);
+}
+
+/*弹出层*/
+#popBox {
+    display: none;
+    background-color: #FFFFFF;
+    z-index: 11;
+    width: 400px;
+    height:250px;
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    margin:auto;
+}
+
+#popBox .close{
+    text-align: right;
+    margin-right: 5px;
+
+}
+
+/*关闭按钮*/
+#popBox .close a {
+    text-decoration: none;
+    color: #2D2C3B;
+}
+
+#popBox1 {
+    display: none;
+    background-color: #FFFFFF;
+    z-index: 11;
+    width: 400px;
+    height: 250px;
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    margin:auto;
+}
+#popBox1 .close{
+    text-align: right;
+    margin-right: 5px;
+
+}
+
+/*关闭按钮*/
+#popBox1 .close a {
+    text-decoration: none;
+    color: #2D2C3B;
+}
+
+.outside{
+    font-size:20px;
+    border:3px solid gray;
+    width:400px;
+    height:300px;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+
+}
+.tips{
+    margin-left:10px;
+    margin-right:10px;
+    border-bottom: 3px black solid;
+    height:50px;
+    line-height:50px;
+}
+.infor{
+    line-height:50px;
+    margin-left:10px;
+}
+.border{
+    width:300px;
+    height:40px;
+}
+.submit{
+    width:100px;
+    height:45px;
+    border-radius: 15px;
+    background:palevioletred;
+    color:white;
+    font-size:20px;
+    float: right;
+}
+.first{
+    font-weight: bold;
+}
