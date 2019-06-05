@@ -2,10 +2,61 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>新添文章</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}" href="../../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/articleEdit.css}" href="../../static/css/articleEdit.css">
 </head>
 <body>
-<p>分类：<select name="type"><option th:each="p:${type}" th:text="${p.name}"></option></select></p>
-<p>级别：<select name="grade"><option th:each="p:${grade}" th:text="${p.name}"></select> </p>
+
+<div class="nav">
+    <h2>文章添加</h2>
+
+    <div class="r_nav">
+        <form method="" name="" >
+            <input type="text" placeholder="请输入搜索内容" class="search">
+            <input type="submit" value="搜索" class="button" >
+        </form>
+    </div>
+</div>
+
+<div class="outside">
+
+    <form action="#" th:action="@{/}" method="post">
+        <table class="infor" style="border-collapse:separate; border-spacing:0px 10px;">
+            <tr>
+                <td><label for="title">标题：</label></td>
+                <td><input  type="text"  name="title" id="title" class="border"/></td>
+            </tr>
+            <tr>
+                <td><label for="author">作者：</label></td>
+                <td><input  type="text"  name="author" id="author" class="border"/></td>
+            </tr>
+            <tr>
+                <td><label for="type">分类：</label></td>
+                <td><input  type="text"  name="type" id="type" class="border"/></td>
+            </tr>
+            <tr>
+                <td><label for="grade">级别：</label></td>
+                <td><input  type="text"  name="grade" id="grade" class="border"/></td>
+            </tr>
+
+
+            <tr>
+                <td><label for="content">内容：</label></td>
+                <td><textarea  name="content" id="content" ></textarea></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" name="" value="提交" class="submit" /></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+
+</div>
+
 </body>
 </html>
