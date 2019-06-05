@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>栏目管理</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}" href="../../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/columnManage.css}" href="../../static/css/columnManage.css">
+</head>
+<body>
+<div class="nav">
+        <h2>栏目管理</h2>
+        <a href="dict.html" class="jump">数据字典</a>
+        <a href="userManagePage.html" class="jump">用户管理</a>
+        <a href="resourceStore.html" class="jump">资源存储</a>
+    <a href="articleManage.html" class="jump">文章管理</a>
+            <div class="r_nav">
+                <form method="" name="" >
+                    <input type="text" placeholder="请输入搜索内容" class="search">
+                    <input type="submit" value="搜索" class="button" >
+                </form>
+            </div>
+
+</div>
+
+<div class="table">
+    <table class="table1" id="mytable">
+        <tr>
+            <th>名称</th>
+            <th>状态</th>
+            <th>编辑</th>
+            <th>删除</th>
+            <th><a  name="popBox" style="cursor:pointer;" onclick="popBox1()">添加</a></th>
+        </tr>
+        <tr class="first">
+            <td th:text="${}">综合</td>
+            <td th:text="${}">第一级别</td>
+            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox();modify(this)">编辑</a></td>
+            <td><a href="">删除</a></td>
+            <th><a  name="popBox" style="cursor:pointer;" onclick="popBox1()">添加</a></th>
+
+        </tr>
+        <tr>
+            <td th:text="${}">国际</td>
+            <td th:text="${}">第二级别</td>
+            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox();modify(this)">编辑</a></td>
+            <td><a href="">删除</a></td>
+            <td><a href="articleNew.html">添加文章</a></td>
+        </tr>
+
+    </table>
+</div>
+<div id="popLayer">
+
+</div>
+
+<div class="outside" id="popBox">
+    <div class="close">
+        <a href="javascript:void(0)" onclick="closeBox()">关闭</a>
+    </div>
+    <div class="tips">
+        栏目管理编辑
+    </div>
+    <form th:action="@{}" method="post">
+        <input type="hidden" name="id" value="" th:value="${}"/>
+        <table class="infor">
+            <tr>
+                <td><label for="name">名称：</label></td>
+                <td><input  type="text"  name="name" id="name" class="border"/></td>
+            </tr>
+            <tr>
+                <td><label for="status">状态：</label></td>
+                <td><input  type="text"  name="status" id="status" class="border"/></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="button" value="更新"  class="submit" id=""  onclick="update();closeBox()" /></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+
+</div>
+
+<!-- 添加-->
+<div class="outside" id="popBox1">
+    <div class="close">
+        <a href="javascript:void(0)" onclick="closeBox1()">关闭</a>
+    </div>
+    <div class="tips">
+        栏目管理添加
+    </div>
+    <form th:action="@{}" method="post">
+        <input type="hidden" name="id" value="" th:value="${}"/>
+        <table class="infor">
+            <tr>
+                <td><label >名称：</label></td>
+                <td><input  type="text"  name="name"  class="border"/></td>
+            </tr>
+            <tr>
+                <td><label >状态：</label></td>
+                <td><input  type="text"  name="status"  class="border"/></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" name="" value="提交" class="submit" /></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+
+</div>
+
+<script th:inline="javascript">
+    /*点击弹出按钮*/
+    function popBox() {
+        var popBox = document.getElementById("popBox");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "block";
+        popLayer.style.display = "block";
+    };
+
+    /*点击关闭按钮*/
+    function closeBox() {
+        var popBox = document.getElementById("popBox");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "none";
+        popLayer.style.display = "none";
+    }
+    function popBox1() {
+        var popBox = document.getElementById("popBox1");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "block";
+        popLayer.style.display = "block";
+    }
+
+    function closeBox1() {
+        var popBox = document.getElementById("popBox1");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "none";
+        popLayer.style.display = "none";
+    }
+
+    /*编辑传输数据到pop*/
+    function modify(obj){
+        var oName= document.getElementById('name');
+        var oStatus = document.getElementById('status');
+        var oTr = obj.parentNode.parentNode;
+        var aTd = oTr.getElementsByTagName('td');
+        rowIndex = obj.parentNode.parentNode.rowIndex;
+        oName.value = aTd[0].innerHTML;
+        oStatus.value = aTd[1].innerHTML;
+        console.log(aTd[2].innerHTML);
+        //alert(i);
+
+    }
+    //更新功能
+    function update(){
+        var oName= document.getElementById('name');
+        var oStatus = document.getElementById('status');
+        var oMytable = document.getElementById('mytable');
+        //alert(rowIndex);
+        //var aTd = rowIndex.cells;
+        console.log(oMytable.rows[rowIndex].cells)
+        oMytable.rows[rowIndex].cells[0].innerHTML = oName.value;
+        oMytable.rows[rowIndex].cells[1].innerHTML = oStatus.value;
+    }
+</script>
+
+
+</body>
+</html>
