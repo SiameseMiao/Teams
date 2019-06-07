@@ -49,9 +49,9 @@ public class DictController {
         return "admin/dict";
     }
     @PostMapping(value = "update")
-    public String updateDict( @Valid Dict dict, Model model) {
+    public String updateDict(@Valid Dict dict, Model model) {
         model.addAttribute("type", dict.getType());
-        dictService.update(dict.getDictId(),dict.getType(), dict.getCode(), dict.getName(), dict.getSort(),Constants.Status.ENABLE);
+        dictService.update(dict.getDictId(), dict.getType(), dict.getCode(), dict.getName(), dict.getSort(), Constants.Status.ENABLE);
         return "redirect:/dict/list";
     }
     @PostMapping(value = "create")
