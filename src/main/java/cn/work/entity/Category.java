@@ -4,32 +4,26 @@ import cn.work.util.Constants;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * Category Class
- *
- * @author <b>Siamese_miao</b>, Copyright &#169; 2018
- * @version 1.0, 2019-06-04 12:48
+ * Category Class @author <b>Siamese_miao</b>, Copyright &#169; 2018 @version 1.0, 2019-06-04 12:48
  */
 @Entity
-
 @Table(name = "t_category")
-
 public class Category {
-
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "name")
     private String name;
     @Column(name = "status")
     private Constants.Status status = Constants.Status.ENABLE;
-    @ManyToOne
-    @JoinColumn(name = "father_id", referencedColumnName = "id", nullable = false)
+    @Column(name = "father_id")
     private int fid;
 
     public int getId() {

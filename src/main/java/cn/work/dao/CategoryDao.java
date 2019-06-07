@@ -12,6 +12,25 @@ import java.util.List;
  */
 @Repository
 public interface CategoryDao extends CrudRepository<Category, Integer> {
+    /**
+     * fetch data from Category
+     *
+     * @return List<Category>
+     */
     @Override
     public List<Category> findAll();
+    /**
+     * fetch data from Category
+     *
+     * @param fid fid
+     * @return List<Category>
+     */
+    public List<Category> findCategoriesByFid(int fid);
+    /**
+     * fetch data from Category
+     *
+     * @param name name
+     * @return List<Category>
+     */
+    public List<Category> findCategoriesByName(String name);
 }

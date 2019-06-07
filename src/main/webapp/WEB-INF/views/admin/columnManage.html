@@ -8,8 +8,8 @@
 </head>
 <body>
 <div class="nav">
-        <h2>栏目管理</h2>
-        <a href="dict.html" class="jump">数据字典</a>
+    <h2><a th:href="@{/category}" href="columnManage.html">栏目管理</a></h2>
+        <a th:href="@{/dict}" class="jump">数据字典</a>
         <a href="userManagePage.html" class="jump">用户管理</a>
         <a href="resourceStore.html" class="jump">资源存储</a>
     <a href="articleManage.html" class="jump">文章管理</a>
@@ -24,29 +24,37 @@
 
 <div class="table">
     <table class="table1" id="mytable">
+        <thead>
         <tr>
+            <th>id</th>
             <th>名称</th>
             <th>状态</th>
+            <th>父id</th>
             <th>编辑</th>
             <th>删除</th>
-            <th><a  name="popBox" style="cursor:pointer;" onclick="popBox1()">添加</a></th>
+            <th><a  name="popBox" style="cursor:pointer;" onclick="popBox2()">添加</a></th>
         </tr>
-        <tr class="first">
-            <td th:text="${}">综合</td>
-            <td th:text="${}">第一级别</td>
-            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox();modify(this)">编辑</a></td>
-            <td><a href="">删除</a></td>
-            <th><a  name="popBox" style="cursor:pointer;" onclick="popBox1()">添加</a></th>
-
+        </thead>
+        <tbody>
+        <tr class="first" th:each="category:${categorys}">
+            <td th:text="${category.id}">id</td>
+            <td th:text="${category.name}">名称</td>
+            <td th:text="${category.status.desc}">状态</td>
+            <td th:text="${category.fid}">父id</td>
+            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox();modify(this)">编辑</a>|<a th:href="@{/category/forbid(id=${category.id})}" th:text="(${category.status.value()}=='1')?'禁用':'启用'">状态</a></td>
+            <td><a th:href="@{/category/delete(id=${category.id})}">删除</a></td>
+            <th><a  name="popBox" style="cursor:pointer;" onclick="popBox1();modify1(this)">添加</a></th>
         </tr>
-        <tr>
-            <td th:text="${}">国际</td>
-            <td th:text="${}">第二级别</td>
-            <td><a  name="popBox" style="cursor:pointer;" onclick="popBox();modify(this)">编辑</a></td>
-            <td><a href="">删除</a></td>
-            <td><a href="articleNew.html">添加文章</a></td>
-        </tr>
-
+        <!--<tr th:each="category2:${categorys2}">-->
+            <!--<td th:text="${category2.id}">id</td>-->
+            <!--<td th:text="${category2.name}">名称</td>-->
+            <!--<td th:text="${category2.status.desc}">状态</td>-->
+            <!--<td th:text="${category2.fid}">父id</td>-->
+            <!--<td><a  name="popBox" style="cursor:pointer;" onclick="popBox();modify(this)">编辑</a>|<a th:href="@{/categoriy/forbid(id=${category2.id})}" th:text="(${category2.status.value()}=='1')?'禁用':'启用'">状态</a></td>-->
+            <!--<td><a th:href="@{/category/delete(id=${category2.id})}">删除</a></td>-->
+            <!--<td><a href="articleNew.html">添加文章</a></td>-->
+        <!--</tr>-->
+        </tbody>
     </table>
 </div>
 <div id="popLayer">
@@ -60,30 +68,53 @@
     <div class="tips">
         栏目管理编辑
     </div>
-    <form th:action="@{}" method="post">
-        <input type="hidden" name="id" value="" th:value="${}"/>
+    <form  th:method="post" th:action="@{/category/update}">
         <table class="infor">
             <tr>
-                <td><label for="name">名称：</label></td>
-                <td><input  type="text"  name="name" id="name" class="border"/></td>
+                <td><label for="id">栏目id：</label></td>
+                <td><input type="text" readonly="readonly" name="id" th:value="*{id}" id="id" class="border"></td>
             </tr>
             <tr>
-                <td><label for="status">状态：</label></td>
-                <td><input  type="text"  name="status" id="status" class="border"/></td>
+                <td><label for="name">名称：</label></td>
+                <td><input  type="text"  th:value="*{name}"  name="name"  id="name" class="border"/></td>
             </tr>
-
+            <tr>
+                <td><label for="fid">父id：</label></td>
+                <td><input type="text" readonly="readonly" name="fid" th:value="*{fid}" id="fid" class="border"></td>
+            </tr>
             <tr>
                 <td></td>
-                <td><input type="button" value="更新"  class="submit" id=""  onclick="update();closeBox()" /></td>
+                <td><input type="submit" value="更新"  class="submit" id=""  onclick="update();closeBox()" /></td>
             </tr>
         </table>
 
     </form>
-
-
-
 </div>
-
+<!-- 添加-->
+<div class="outside" id="popBox2">
+    <div class="close">
+        <a href="javascript:void(0)" onclick="closeBox2()">关闭</a>
+    </div>
+    <div class="tips">
+        栏目管理添加
+    </div>
+    <form th:action="@{/category/create}" method="post">
+        <table class="infor">
+            <tr>
+                <td><label >名称：</label></td>
+                <td><input  type="text"  name="name"  class="border"/></td>
+            </tr>
+            <tr>
+                <td><label for="fid">父id：</label></td>
+                <td><input type="text" readonly="readonly" th:value="0" name="fid" class="border"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="" value="提交" class="submit" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
 <!-- 添加-->
 <div class="outside" id="popBox1">
     <div class="close">
@@ -92,18 +123,16 @@
     <div class="tips">
         栏目管理添加
     </div>
-    <form th:action="@{}" method="post">
-        <input type="hidden" name="id" value="" th:value="${}"/>
+    <form th:action="@{/category/create}" method="post">
         <table class="infor">
             <tr>
                 <td><label >名称：</label></td>
                 <td><input  type="text"  name="name"  class="border"/></td>
             </tr>
             <tr>
-                <td><label >状态：</label></td>
-                <td><input  type="text"  name="status"  class="border"/></td>
+                <td><label for="fid">父id：</label></td>
+                <td><input type="text" disabled="disabled" th:value="*{id}" name="fid" id="id" class="border"></td>
             </tr>
-
             <tr>
                 <td></td>
                 <td><input type="submit" name="" value="提交" class="submit" /></td>
@@ -111,11 +140,7 @@
         </table>
 
     </form>
-
-
-
 </div>
-
 <script th:inline="javascript">
     /*点击弹出按钮*/
     function popBox() {
@@ -132,43 +157,68 @@
         popBox.style.display = "none";
         popLayer.style.display = "none";
     }
+
+    function popBox2() {
+        var popBox = document.getElementById("popBox2");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "block";
+        popLayer.style.display = "block";
+    }
+
+    function closeBox2() {
+        var popBox = document.getElementById("popBox2");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "none";
+        popLayer.style.display = "none";
+    }
     function popBox1() {
         var popBox = document.getElementById("popBox1");
         var popLayer = document.getElementById("popLayer");
         popBox.style.display = "block";
         popLayer.style.display = "block";
     }
-
     function closeBox1() {
         var popBox = document.getElementById("popBox1");
         var popLayer = document.getElementById("popLayer");
         popBox.style.display = "none";
         popLayer.style.display = "none";
     }
-
-    /*编辑传输数据到pop*/
-    function modify(obj){
-        var oName= document.getElementById('name');
-        var oStatus = document.getElementById('status');
+    /*添加传输数据到pop*/
+    function modify1(obj){
+        var oFid = document.getElementById('id');
         var oTr = obj.parentNode.parentNode;
         var aTd = oTr.getElementsByTagName('td');
         rowIndex = obj.parentNode.parentNode.rowIndex;
-        oName.value = aTd[0].innerHTML;
-        oStatus.value = aTd[1].innerHTML;
-        console.log(aTd[2].innerHTML);
+        oFid.value = aTd[0].innerHTML;
+        console.log(aTd[0].innerHTML);
         //alert(i);
-
+    }
+    /*编辑传输数据到pop*/
+    function modify(obj){
+        var oId = document.getElementById('id');
+        var oName= document.getElementById('name');
+        var oFid = document.getElementById('fid');
+        var oTr = obj.parentNode.parentNode;
+        var aTd = oTr.getElementsByTagName('td');
+        rowIndex = obj.parentNode.parentNode.rowIndex;
+        oId.value = aTd[0].innerHTML;
+        oName.value = aTd[1].innerHTML;
+        oFid.value = aTd[3].innerHTML;
+        console.log(aTd[1].innerHTML);
+        //alert(i);
     }
     //更新功能
     function update(){
+        var oId = document.getElementById('id');
         var oName= document.getElementById('name');
-        var oStatus = document.getElementById('status');
+        var oFid = document.getElementById('fid');
         var oMytable = document.getElementById('mytable');
         //alert(rowIndex);
         //var aTd = rowIndex.cells;
         console.log(oMytable.rows[rowIndex].cells)
-        oMytable.rows[rowIndex].cells[0].innerHTML = oName.value;
-        oMytable.rows[rowIndex].cells[1].innerHTML = oStatus.value;
+        oMytable.rows[rowIndex].cells[0].innerHTML = oId.value;
+        oMytable.rows[rowIndex].cells[1].innerHTML = oName.value;
+        oMytable.rows[rowIndex].cells[3].innerHTML = oFid.value;
     }
 </script>
 
