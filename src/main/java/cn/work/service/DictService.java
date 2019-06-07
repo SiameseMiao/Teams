@@ -14,7 +14,7 @@ import java.util.List;
 public  interface DictService {
     public void insert(String type, String code, String name, float sort, Constants.Status status);
     public void update(int id,String type, String code, String name, float sort, Constants.Status status);
-    public void forbid(int i, Constants.Status status);
+    public void forbid(int id, Constants.Status status);
     public List<Dict> getDictByType(String type);
     public List<Dict> getDictByTypeAndStatus(String type,Constants.Status status);
     public List<Dict> getDict();

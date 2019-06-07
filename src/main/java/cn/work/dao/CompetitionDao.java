@@ -15,12 +15,18 @@ import java.util.List;
  */
 @Repository
 public interface CompetitionDao extends PlatformRepository<Competition,Integer> {
+    ///**
+    // * fetch data from Competition c
+    // *
+    // * @return List<Competition>
+    // */
+    //List<Competition> getAll();
     /**
      * fetch data from Competition c
      *
      * @return List<Competition>
      */
-    public List<Competition> getAll();
+    List<Competition> findAllByOrderByCreateTimeDesc();
     /**
      * fetch data from Competition c
      *
@@ -31,10 +37,11 @@ public interface CompetitionDao extends PlatformRepository<Competition,Integer> 
     /**
      * fetch data from Competition c
      *
-     * @param str name or content
+     * @param str1 name
+     * @param str2 content
      * @return List<Competition>
      */
-    public List<Competition> getCompetitionsByNameOrContentLike(String str);
+    public List<Competition> getCompetitionsByNameOrContentLike(String str1,String str2);
     /**
      * fetch data from Competition c
      *

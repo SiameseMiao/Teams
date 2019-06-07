@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -50,19 +49,19 @@ public class DictController {
         return "admin/dict";
     }
     @PostMapping(value = "update")
-    public String updateDict( @Valid Dict dict, Model model, HttpServletRequest request) {
+    public String updateDict( @Valid Dict dict, Model model) {
         model.addAttribute("type", dict.getType());
         dictService.update(dict.getDictId(),dict.getType(), dict.getCode(), dict.getName(), dict.getSort(),Constants.Status.ENABLE);
         return "redirect:/dict/list";
     }
     @PostMapping(value = "create")
-    public String createDict(@Valid Dict dict, Model model, HttpServletRequest request) {
+    public String createDict(@Valid Dict dict) {
         float sort = dictService.getMaxSort(dict.getType());
         dictService.insert(dict.getType(), dict.getCode(), dict.getName(),sort+1,Constants.Status.ENABLE);
         return "redirect:/dict/";
     }
     @GetMapping("forbid")
-    public String forbidDict(ServletRequest request, RedirectAttributes redirectAttributes, Model model) {
+    public String forbidDict(ServletRequest request) {
         int dictId = Integer.valueOf(request.getParameter("id"));
         Dict dict =  dictService.getDictById(dictId);
         if(dict.getStatus()==Constants.Status.DISABLE){

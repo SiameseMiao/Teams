@@ -29,7 +29,7 @@ public class Competition {
     private String content;
     @Column(name = "competition_status")
     private Constants.Status status = Constants.Status.UNDERWAY;
-    @ManyToOne
+    @ManyToOne(targetEntity = Category.class)
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private int rank;
     @Column(name = "competition_createTime")

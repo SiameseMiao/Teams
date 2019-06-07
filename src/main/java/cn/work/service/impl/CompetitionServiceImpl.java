@@ -42,15 +42,15 @@ public class CompetitionServiceImpl implements CompetitionService {
 
     @Override
     public List<Competition> getAllCompetitions() {
-        return competitionDao.getAll();
+        return competitionDao.findAllByOrderByCreateTimeDesc();
     }
     @Override
     public List<Competition> getAllCompetitionsByStatus(Constants.Status status) {
         return competitionDao.getCompetitionByStatus(status);
     }
     @Override
-    public List<Competition> vagueSearch(String str) {
-        return competitionDao.getCompetitionsByNameOrContentLike(str);
+    public List<Competition> vagueSearch(String str1,String str2) {
+        return competitionDao.getCompetitionsByNameOrContentLike(str1,str2);
     }
     @Override
     public List<Competition> getAllCompetitionsByName(String name) {
