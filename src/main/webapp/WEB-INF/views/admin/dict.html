@@ -39,7 +39,7 @@
             <th>属性排序</th>
             <th>属性状态</th>
             <th>管理</th>
-        <th><a  name="popBox" style="cursor:pointer;" onclick="popBox1()" th:href="@{dict/create}">添加</a></th></tr>
+        <th><a  name="popBox" style="cursor:pointer;" onclick="popBox1()">添加</a></th></tr>
         </thead>
         <tbody>
         <tr th:each="dict,iterStat:${dicts}">
@@ -49,7 +49,7 @@
             <td th:text="${dict.name}">4</td>
             <td th:text="${dict.sort}">5</td>
             <td th:text="${dict.status.desc}">6</td>
-            <td> <a th:href="@{/dict/forbid(id=${dict.dictId})}" th:text="(${dict.status.value()}=='1')?'禁用':'启用'">7</a> |  <a th:href="@{/dict/update(id=${dict.dictId})}" onclick="popBox();modify(this)">编辑</a>
+            <td> <a th:href="@{/dict/forbid(id=${dict.dictId})}" th:text="(${dict.status.value()}=='1')?'禁用':'启用'">7</a> |  <a name="popBox" onclick="popBox();modify(this)">编辑</a>
             </td>
             <td><a th:href="@{/dict/delete(id=${dict.dictId})}" class="cla_delete">删除</a></td>
         </tr>
@@ -67,10 +67,12 @@
     <div class="tips">
         数据字典编辑
     </div>
-    <form th:method="post" th:action="@{/dict/action}" >
-        <input type="hidden" name="op" th:value="${action}">
-        <!--<input type="hidden" name="dictId" th:value="*{dictId}">-->
+    <form th:method="post" th:action="@{/dict/update}" >
         <table class="infor">
+            <tr>
+                <td><label for="dictId">字典id：</label></td>
+                <td><input type="text" name="dictId" th:value="*{dictId}" id="dictId" class="border"></td>
+            </tr>
             <tr>
                 <td><label for="type">字典名称：</label></td>
                 <td><input type="text" name="type" th:value="*{type}" id="type" class="border"></td>
@@ -83,14 +85,15 @@
                 <td><label for="name">属性名称：</label></td>
                 <td><input  type="text"  th:value="*{name}"  name="name"  id="name" class="border"/></td>
             </tr>
-            <tr th:if="${action}=='update'">
+            <tr >
                 <td><label for="sort">属性排序：</label></td>
                 <td><input  type="text"  name="sort"  th:value="*{sort}" id="sort" class="border"/></td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="button" value="更新"  class="submit" id=""  onclick="update();closeBox()" /></td>
+                <td><input type="submit" value="更新"  class="submit" id=""  onclick="update();closeBox()" /></td>
             </tr>
+
         </table>
 
     </form>
@@ -107,25 +110,19 @@
     <div class="tips">
         数据字典添加
     </div>
-    <form th:method="post" th:action="@{/dict/action}" >
-        <input type="hidden" name="op" th:value="${action}">
-        <!--<input type="hidden" name="dictId" th:value="*{dictId}">-->
+    <form th:method="post" th:action="@{/dict/create}" >
         <table class="infor">
             <tr>
                 <td><label >字典名称：</label></td>
-                <td><input type="text" name="type" th:value="*{type}"  class="border"></td>
+                <td><input type="text" name="type"  class="border"></td>
             </tr>
             <tr>
                 <td><label >属性编码：</label></td>
-                <td><input  type="text" name="code" th:value="*{code}"  class="border"/></td>
+                <td><input  type="text" name="code"  class="border"/></td>
             </tr>
             <tr>
                 <td><label >属性名称：</label></td>
-                <td><input  type="text"  th:value="*{name}"  name="name"   class="border"/></td>
-            </tr>
-            <tr th:if="${action}=='update'">
-                <td><label>属性排序：</label></td>
-                <td><input  type="text"  name="sort"  th:value="*{sort}" class="border"/></td>
+                <td><input  type="text"   name="name"   class="border"/></td>
             </tr>
             <tr>
                 <td></td>
@@ -171,6 +168,7 @@
 
     /*编辑传输数据到pop*/
     function modify(obj){
+        var oDictId = document.getElementById('dictId');
         var oType = document.getElementById('type');
         var oCode = document.getElementById('code');
         var oName= document.getElementById('name');
@@ -178,6 +176,7 @@
         var oTr = obj.parentNode.parentNode;
         var aTd = oTr.getElementsByTagName('td');
         rowIndex = obj.parentNode.parentNode.rowIndex;
+        oDictId.value = aTd[0].innerHTML;
         oType.value = aTd[1].innerHTML;
         oCode.value = aTd[2].innerHTML;
         oName.value = aTd[3].innerHTML;
@@ -188,6 +187,7 @@
     }
     //更新功能
     function update(){
+        var oDictId = document.getElementById('dictId');
         var oType = document.getElementById('type');
         var oCode = document.getElementById('code');
         var oName= document.getElementById('name');
@@ -196,6 +196,7 @@
         //alert(rowIndex);
         //var aTd = rowIndex.cells;
         console.log(oMytable.rows[rowIndex].cells)
+        oMytable.rows[rowIndex].cells[0].innerHTML = oDictId.value;
         oMytable.rows[rowIndex].cells[1].innerHTML = oType.value;
         oMytable.rows[rowIndex].cells[2].innerHTML = oCode.value;
         oMytable.rows[rowIndex].cells[3].innerHTML = oName.value;
