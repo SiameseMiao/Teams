@@ -49,30 +49,6 @@ public class DictController {
         model.addAttribute("dicts", dicts);
         return "admin/dict";
     }
-    //@GetMapping(value = "create")
-    //public String createDict(Model model) {
-    //    model.addAttribute("dict", new Dict());
-    //    model.addAttribute("action", "create");
-    //    return "admin/dictNew";
-    //}
-    //@PostMapping(value = "action")
-    //public String updateDict(@Valid String op,@Valid Dict dict, Model model, HttpServletRequest request) {
-    //    if(op=="create"||op.equals("create")){
-    //    float sort = dictService.getMaxSort(dict.getType());
-    //    dictService.insert(dict.getType(), dict.getCode(), dict.getName(),sort+1,Constants.Status.ENABLE);}
-    //    else if(op=="update"||op.equals("update")){
-    //        dictService.update(dict.getDictId(),dict.getType(), dict.getCode(), dict.getName(), dict.getSort(),Constants.Status.ENABLE);
-    //    }
-    //    return "redirect:/dict/";
-    //}
-    //@GetMapping("update")
-    //public String updateDict(ServletRequest request, RedirectAttributes redirectAttributes, Model model) {
-    //    int dictId = Integer.valueOf(request.getParameter("id"));
-    //    Dict dict =  dictService.getDictById(dictId);
-    //    model.addAttribute("dict",dict);
-    //    model.addAttribute("action", "update");
-    //    return "admin/dictNew";
-    //}
     @PostMapping(value = "update")
     public String updateDict( @Valid Dict dict, Model model, HttpServletRequest request) {
         model.addAttribute("type", dict.getType());
