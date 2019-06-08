@@ -37,6 +37,13 @@ public interface CompetitionDao extends PlatformRepository<Competition,Integer> 
     /**
      * fetch data from Competition c
      *
+     * @param rankId rank
+     * @return List<Competition>
+     */
+    public List<Competition> getCompetitionByRank(int rankId);
+    /**
+     * fetch data from Competition c
+     *
      * @param str1 name
      * @param str2 content
      * @return List<Competition>

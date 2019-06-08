@@ -16,6 +16,7 @@ public interface CompetitionService {
     public Competition getCompetition(int pkId);
     public List<Competition> getAllCompetitions();
     public List<Competition> getAllCompetitionsByStatus(Constants.Status status);
+    public List<Competition> getCompetitionByRank(int rankId);
     public List<Competition> vagueSearch(String str1,String str2);
     public List<Competition> getAllCompetitionsByName(String name);
 }

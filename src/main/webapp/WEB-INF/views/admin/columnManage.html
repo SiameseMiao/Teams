@@ -13,13 +13,6 @@
         <a href="userManagePage.html" class="jump">用户管理</a>
         <a href="resourceStore.html" class="jump">资源存储</a>
     <a href="articleManage.html" class="jump">文章管理</a>
-            <div class="r_nav">
-                <form method="" name="" >
-                    <input type="text" placeholder="请输入搜索内容" class="search">
-                    <input type="submit" value="搜索" class="button" >
-                </form>
-            </div>
-
 </div>
 
 <div class="table">
@@ -32,28 +25,19 @@
             <th>父id</th>
             <th>编辑</th>
             <th>删除</th>
-            <th><a  name="popBox" style="cursor:pointer;" onclick="popBox2()">添加</a></th>
+            <th><a name="popBox" style="cursor:pointer;" onclick="popBox2()">添加</a></th>
         </tr>
         </thead>
         <tbody>
-        <tr class="first" th:each="category:${categorys}">
+        <tr th:each="category:${categorys}">
             <td th:text="${category.id}">id</td>
             <td th:text="${category.name}">名称</td>
             <td th:text="${category.status.desc}">状态</td>
             <td th:text="${category.fid}">父id</td>
             <td><a  name="popBox" style="cursor:pointer;" onclick="popBox();modify(this)">编辑</a>|<a th:href="@{/category/forbid(id=${category.id})}" th:text="(${category.status.value()}=='1')?'禁用':'启用'">状态</a></td>
             <td><a th:href="@{/category/delete(id=${category.id})}">删除</a></td>
-            <th><a  name="popBox" style="cursor:pointer;" onclick="popBox1();modify1(this)">添加</a></th>
+            <td th:if="${category.status.value()}=='1'"><a th:if="${category.fid}==0" name="popBox" style="cursor:pointer;" onclick="popBox1();modify1(this)">添加</a><a th:if="${category.fid}!=0" href="articleNew.html">添加竞赛</a></td>
         </tr>
-        <!--<tr th:each="category2:${categorys2}">-->
-            <!--<td th:text="${category2.id}">id</td>-->
-            <!--<td th:text="${category2.name}">名称</td>-->
-            <!--<td th:text="${category2.status.desc}">状态</td>-->
-            <!--<td th:text="${category2.fid}">父id</td>-->
-            <!--<td><a  name="popBox" style="cursor:pointer;" onclick="popBox();modify(this)">编辑</a>|<a th:href="@{/categoriy/forbid(id=${category2.id})}" th:text="(${category2.status.value()}=='1')?'禁用':'启用'">状态</a></td>-->
-            <!--<td><a th:href="@{/category/delete(id=${category2.id})}">删除</a></td>-->
-            <!--<td><a href="articleNew.html">添加文章</a></td>-->
-        <!--</tr>-->
         </tbody>
     </table>
 </div>

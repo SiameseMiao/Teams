@@ -45,6 +45,10 @@ public class CompetitionServiceImpl implements CompetitionService {
         return competitionDao.findAllByOrderByCreateTimeDesc();
     }
     @Override
+    public List<Competition> getCompetitionByRank(int rankId) {
+        return competitionDao.getCompetitionByRank(rankId);
+    }
+    @Override
     public List<Competition> getAllCompetitionsByStatus(Constants.Status status) {
         return competitionDao.getCompetitionByStatus(status);
     }

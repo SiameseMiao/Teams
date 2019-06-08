@@ -17,5 +17,5 @@ public interface CategoryService {
     public Category getCategory(int id);
     public List<Category> getAllCategorys();
     public List<Category> getCategoriesByFid(int fid);
-    public List<Category> getCategoriesByName(String name);
+    //public List<Category> getCategoriesByName(String name);
 }

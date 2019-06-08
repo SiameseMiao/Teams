@@ -59,9 +59,9 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryDao.findCategoriesByFid(fid);
     };
 
-    @Override
-    public List<Category> getCategoriesByName(String name){
-        return categoryDao.findCategoriesByName(name);
-    };
+    //@Override
+    //public List<Category> getCategoriesByName(String name){
+    //    return categoryDao.findCategoriesByName(name);
+    //};
 
 }
