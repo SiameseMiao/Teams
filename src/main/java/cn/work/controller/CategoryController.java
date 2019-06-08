@@ -19,7 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * CategoryController Class @author <b>Siamese_miao</b>, Copyright &#169; 2018 @version 1.0, 2019-06-07 19:04
+ * CategoryController Class
+ *
+ * @author <b>Siamese_miao</b>, Copyright &#169; 2018
+ * @version 1.0, 2019-06-07 19:04
  */
 @Controller
 @RequestMapping("/category")
@@ -33,19 +36,20 @@ public class CategoryController {
     public String list(Model model) {
         List<Category> categories = categoryService.getCategoriesByFid(0);
         List<Category> list = new ArrayList<Category>();
-        walkCategoryTree(categories,"|--",list);
+        walkCategoryTree(categories, "|--", list);
         model.addAttribute("categorys", list);
         return "admin/columnManage";
     }
-    public void walkCategoryTree(List<Category> categories,String prefix,List<Category> list){
-        for(Category top:categories){
-            if(top.getFid()!=0){
-                top.setName(prefix+top.getName());
+
+    public void walkCategoryTree(List<Category> categories, String prefix, List<Category> list) {
+        for (Category top : categories) {
+            if (top.getFid() != 0) {
+                top.setName(prefix + top.getName());
             }
             list.add(top);
             try {
                 List<Category> category = categoryService.getCategoriesByFid(top.getId());
-                walkCategoryTree(category,prefix,list);
+                walkCategoryTree(category, prefix, list);
             } catch (Exception e) {
             }
         }
@@ -67,43 +71,38 @@ public class CategoryController {
     public String forbidCategory(ServletRequest request) {
         int categoryId = Integer.valueOf(request.getParameter("id"));
         Category category = categoryService.getCategory(categoryId);
-        if (category.getStatus() == Constants.Status.DISABLE){
+        if (category.getStatus() == Constants.Status.DISABLE) {
             categoryService.forbid(category.getId(), Constants.Status.ENABLE);
         }
         else {
-            if (category.getFid() == 0) {
-                try{
-                    List<Category> categorys = categoryService.getCategoriesByFid(categoryId);
-                    for (Category top : categorys) {
-                        int rankId = top.getId();
-                        try{
-                            List<Competition> competitions = competitionService.getCompetitionByRank(rankId);
-                            for (Competition temp : competitions){
-                                try {
-                                    competitionService.deleteById(temp.getPkId());
-                                } catch (Exception e) {
-                                }
+            if (category.getFid() == 0) try {
+                List<Category> categorys = categoryService.getCategoriesByFid(categoryId);
+                for (Category top : categorys) {
+                    int rankId = top.getId();
+                    try {
+                        List<Competition> competitions = competitionService.getCompetitionByRank(rankId);
+                        for (Competition temp : competitions)
+                            try {
+                                competitionService.deleteById(temp.getPkId());
+                            } catch (Exception e) {
                             }
-
-                        }catch (Exception e) {
-                        }try {
-                            categoryService.deleteById(rankId);
-                        } catch (Exception e) {
-                        }
+                    } catch (Exception e) {
                     }
-                }catch (Exception e) {
+                    try {
+                        categoryService.deleteById(rankId);
+                    } catch (Exception e) {
+                    }
                 }
-            } else {
-                try{
+            } catch (Exception e) {
+            }
+            else try {
                 List<Competition> competitions = competitionService.getCompetitionByRank(categoryId);
-                    for (Competition temp : competitions){
-                        try {
-                            competitionService.deleteById(temp.getPkId());
-                        } catch (Exception e) {
-                        }
+                for (Competition temp : competitions)
+                    try {
+                        competitionService.deleteById(temp.getPkId());
+                    } catch (Exception e) {
                     }
-                }catch (Exception e) {
-                }
+            } catch (Exception e) {
             }
             categoryService.forbid(category.getId(), Constants.Status.DISABLE);
         }
@@ -114,39 +113,34 @@ public class CategoryController {
     public String delete(ServletRequest request) {
         int categoryId = Integer.valueOf(request.getParameter("id"));
         Category category = categoryService.getCategory(categoryId);
-        if (category.getFid() == 0) {
-            try{
-                List<Category> categorys = categoryService.getCategoriesByFid(categoryId);
-                for (Category top : categorys) {
-                    int rankId = top.getId();
-                    try{
-                        List<Competition> competitions = competitionService.getCompetitionByRank(rankId);
-                        for (Competition temp : competitions){
-                            try {
-                                competitionService.deleteById(temp.getPkId());
-                            } catch (Exception e) {
-                            }
+        if (category.getFid() == 0) try {
+            List<Category> categorys = categoryService.getCategoriesByFid(categoryId);
+            for (Category top : categorys) {
+                int rankId = top.getId();
+                try {
+                    List<Competition> competitions = competitionService.getCompetitionByRank(rankId);
+                    for (Competition temp : competitions)
+                        try {
+                            competitionService.deleteById(temp.getPkId());
+                        } catch (Exception e) {
                         }
-                    } catch (Exception e) {
-                    }
-                    try {
-                        categoryService.deleteById(rankId);
-                    } catch (Exception e) {
-                    }
+                } catch (Exception e) {
                 }
-            }catch(Exception e) {
-            }
-        } else {
-            try {
-                List<Competition> competitions = competitionService.getCompetitionByRank(categoryId);
-                for (Competition temp : competitions) {
-                    try {
-                        competitionService.deleteById(temp.getPkId());
-                    } catch (Exception e) {
-                    }
+                try {
+                    categoryService.deleteById(rankId);
+                } catch (Exception e) {
                 }
-            }catch (Exception e) {
             }
+        } catch (Exception e) {
+        }
+        else try {
+            List<Competition> competitions = competitionService.getCompetitionByRank(categoryId);
+            for (Competition temp : competitions)
+                try {
+                    competitionService.deleteById(temp.getPkId());
+                } catch (Exception e) {
+                }
+        } catch (Exception e) {
         }
         try {
             categoryService.deleteById(categoryId);
