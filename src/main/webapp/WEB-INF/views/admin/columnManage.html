@@ -64,7 +64,7 @@
             </tr>
             <tr>
                 <td><label for="fid">父id：</label></td>
-                <td><input type="text" readonly="readonly" name="fid" th:value="*{fid}" id="fid" class="border"></td>
+                <td><input type="text" readonly="readonly" name="fid" th:value="*{fid}" id="ffid" class="border"></td>
             </tr>
             <tr>
                 <td></td>
@@ -74,13 +74,14 @@
 
     </form>
 </div>
+
 <!-- 添加-->
 <div class="outside" id="popBox2">
     <div class="close">
         <a href="javascript:void(0)" onclick="closeBox2()">关闭</a>
     </div>
     <div class="tips">
-        栏目管理添加
+        第一级栏目管理添加
     </div>
     <form th:action="@{/category/create}" method="post">
         <table class="infor">
@@ -99,13 +100,14 @@
         </table>
     </form>
 </div>
+
 <!-- 添加-->
 <div class="outside" id="popBox1">
     <div class="close">
         <a href="javascript:void(0)" onclick="closeBox1()">关闭</a>
     </div>
     <div class="tips">
-        栏目管理添加
+        第二级栏目管理添加
     </div>
     <form th:action="@{/category/create}" method="post">
         <table class="infor">
@@ -115,7 +117,7 @@
             </tr>
             <tr>
                 <td><label for="fid">父id：</label></td>
-                <td><input type="text" disabled="disabled" th:value="*{id}" name="fid" id="id" class="border"></td>
+                <td><input type="text" readonly="readonly" th:value="*{id}" name="fid" id="fid" class="border"></td>
             </tr>
             <tr>
                 <td></td>
@@ -125,6 +127,7 @@
 
     </form>
 </div>
+
 <script th:inline="javascript">
     /*点击弹出按钮*/
     function popBox() {
@@ -169,12 +172,12 @@
     }
     /*添加传输数据到pop*/
     function modify1(obj){
-        var oFid = document.getElementById('id');
+        var oFid = document.getElementById('fid');
         var oTr = obj.parentNode.parentNode;
         var aTd = oTr.getElementsByTagName('td');
         rowIndex = obj.parentNode.parentNode.rowIndex;
         oFid.value = aTd[0].innerHTML;
-        console.log(aTd[0].innerHTML);
+        console.log(aTd[1].innerHTML);
         //alert(i);
     }
     /*编辑传输数据到pop*/
