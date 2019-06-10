@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>文章管理</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}" href="../../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/columnManage.css}" href="../../static/css/columnManage.css">
+</head>
+<body>
+<div class="nav">
+    <h2><a th:href="@{/}" href="articleManage.html">文章管理</a></h2>
+    <a th:href="@{/dict}" class="jump">数据字典</a>
+    <a href="userManagePage.html" class="jump">用户管理</a>
+    <a href="resourceStore.html" class="jump">资源存储</a>
+    <a th:href="@{/category}" href="columnManage.html" class="jump">栏目管理</a>
+    <div class="r_nav">
+        <form th:action="@{/dict/search}"  method="post" >
+            <input type="text" placeholder="请输入级别id" name="type" class="search">
+            <input type="submit" value="搜索" class="button" >
+        </form>
+    </div>
+</div>
+
+<div class="table">
+    <table class="table1" id="mytable">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>名称</th>
+            <th>状态</th>
+            <th>级别id</th>
+            <th>创建日期</th>
+            <th>更新日期</th>
+            <th>编辑</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="com,iterStat:${competitions}">
+            <td th:text="${iterStat.count}">1</td>
+            <td th:text="${com.name}">名称</td>
+            <td th:text="${com.status.desc}">状态</td>
+            <td th:text="${com.rank}">级别id</td>
+            <td th:text="${com.createTime}">级别id</td>
+            <td th:text="${com.updateTime}">级别id</td>
+            <td><a  name="popBox" style="cursor:pointer;" href="">编辑</a>|<a th:href="@{/competition/stop(id=${com.pkId})}" th:text="(${com.status.value()}=='1')?'已结束':'正在进行'">状态</a></td>
+            <td><a th:href="@{/competition/delete(id=${com.pkId})}">删除</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="fy" style="margin: 50px 0 20px 43%;">
+    <ul class="pagination">
+        <li><a href="#" >&laquo;</a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&raquo;</a></li>
+    </ul>
+</div>
+</body>
+</html>
