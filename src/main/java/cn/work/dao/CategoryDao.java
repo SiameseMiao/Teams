@@ -26,11 +26,11 @@ public interface CategoryDao extends CrudRepository<Category, Integer> {
      * @return List<Category>
      */
     public List<Category> findCategoriesByFid(int fid);
-    ///**
-    // * fetch data from Category
-    // *
-    // * @param name name
-    // * @return List<Category>
-    // */
-    //public List<Category> findCategoriesByName(String name);
+//    /**
+//     * fetch data from Category
+//     *
+//     * @param name name
+//     * @return Category
+//     */
+//    public Category findCategoriesByName(String name);
 }
