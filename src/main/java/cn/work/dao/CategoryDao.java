@@ -1,6 +1,7 @@
 package cn.work.dao;
 
 import cn.work.entity.Category;
+import cn.work.util.Constants;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +27,14 @@ public interface CategoryDao extends CrudRepository<Category, Integer> {
      * @return List<Category>
      */
     public List<Category> findCategoriesByFid(int fid);
+    /**
+     * fetch data from Category
+     *
+     * @param fid fid
+     * @param status status
+     * @return List<Category>
+     */
+    public List<Category> findCategoriesByFidAndStatus(int fid, Constants.Status status);
 //    /**
 //     * fetch data from Category
 //     *

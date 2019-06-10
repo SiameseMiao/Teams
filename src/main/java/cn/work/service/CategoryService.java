@@ -17,5 +17,6 @@ public interface CategoryService {
     public Category getCategory(int id);
     public List<Category> getAllCategorys();
     public List<Category> getCategoriesByFid(int fid);
+    public List<Category> findCategoriesByFidAndStatus(int fid, Constants.Status status);
 //    public Category getCategoriesByName(String name);
 }

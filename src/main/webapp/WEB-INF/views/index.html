@@ -88,29 +88,9 @@
             </form>
         </div>
 		<div class="leibie" style="width: 1250px; display: block;margin: 80px auto;">
-			<div class="lei1" style="background: url(../static/img/边框各种圆形.png) no-repeat;background-size: 100%;width: 200px;height: 150px; display: inline-block;"
-                 th:style="'background: url('+@{/img/边框各种圆形.png}+') no-repeat;background-size: 100%;width: 200px;height: 150px; display: inline-block;'">
-				<a th:href="@{/categories}" target="_blank" style="font-family:华文行楷;color: #5517c3;font-size:3rem;"><p style="padding-left: 75px; padding-top: 70px;">综合</p></a>
-			</div>
-			<div class="lei2" style="background: url(../static/img/边框各种三角.png) no-repeat;background-size: 100%;width: 200px;height: 150px;display: inline-block;"
+			<div class="lei1" style="background: url(../static/img/边框各种圆形.png) no-repeat;background-size: 100%;width: 200px;height: 150px; display: inline-block;" th:each="cate:${categories}"
                  th:style="'background: url('+@{/img/边框各种三角.png}+') no-repeat;background-size: 100%;width: 200px;height: 150px; display: inline-block;'">
-				<a th:href="@{/categories}"   target="_blank" style="font-family:华文行楷;color: #5517c3;font-size:3rem;"><p style="padding-left: 75px; padding-top: 70px;">工科</p></a>
-			</div>
-			<div class="lei3" style="background: url(../static/img/边框各种花.png) no-repeat;background-size: 100%;width: 200px;height: 150px;display: inline-block;"
-                 th:style="'background: url('+@{/img/边框各种花.png}+') no-repeat;background-size: 100%;width: 200px;height: 150px; display: inline-block;'">
-				<a th:href="@{/categories}"  target="_blank" style="font-family:华文行楷;color: #5517c3;font-size:3rem;"><p style="padding-left: 75px; padding-top: 70px;">文科</p></a>
-			</div>
-			<div class="lei4" style="background: url(../static/img/边框各种菱形.png) no-repeat;background-size: 100%;width: 200px;height: 150px;display: inline-block;"
-                 th:style="'background: url('+@{/img/边框各种菱形.png}+') no-repeat;background-size: 100%;width: 200px;height: 150px; display: inline-block;'">
-				<a th:href="@{/categories}"  target="_blank" style="font-family:华文行楷;color: #5517c3;font-size:3rem;"><p style="padding-left: 75px; padding-top: 70px;">理科</p></a>
-			</div>
-			<div class="lei5" style="background: url(../static/img/边框各种心.png) no-repeat;background-size: 100%;width: 200px;height: 150px;display: inline-block;"
-                 th:style="'background: url('+@{/img/边框各种心.png}+') no-repeat;background-size: 100%;width: 200px;height: 150px; display: inline-block;'">
-				<a th:href="@{/categories}" target="_blank" style="font-family:华文行楷;color: #5517c3;font-size:3rem;"><p style="padding-left: 75px; padding-top: 70px;">艺术</p></a>
-			</div>
-			<div class="lei6" style="background: url(../static/img/边框各种太阳花.png) no-repeat;background-size: 100%;width: 200px;height: 150px;display: inline-block;"
-                 th:style="'background: url('+@{/img/边框各种太阳花.png}+') no-repeat;background-size: 100%;width: 200px;height: 150px; display: inline-block;'">
-				<a th:href="@{/categories}"  target="_blank" style="font-family:华文行楷;color: #5517c3;font-size:3rem;"><p style="padding-left: 75px; padding-top: 70px;">其他</p></a>
+				<a th:href="@{/categories(id=${cate.id})}" target="_blank" style="font-family:华文行楷;color: #5517c3;font-size:3rem;"><p style="padding-left: 75px; padding-top: 70px;" th:text="${cate.name}">综合</p></a>
 			</div>
 		</div>
         <div class="di" style="background: url(../static/img/页面底部背景1.png) no-repeat;background-size: 100%;height: 100px;margin: 160px 0 0 0;padding: 0;"

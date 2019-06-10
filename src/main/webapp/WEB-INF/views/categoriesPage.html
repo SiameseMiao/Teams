@@ -32,7 +32,7 @@
             height: 200px;
         }
 
-     </style>>
+     </style>
 	</head>
 	<body>
 		<!--头部-->
@@ -83,9 +83,9 @@
 			<div class="dao" style="margin-left: 22%;color: black;margin-top: 10px;">
 					当前位置：
 
-					<a th:href="@{/categories}" style="color: black;">分类</a>
+					<a th:href="@{/}" style="color: black;">分类</a>
 					>>
-					<a href="#" style="color: black;">综合</a>
+					<a href="#" style="color: black;" th:text="${type}">综合</a>
 				</div>
 			<!--正文-->
 				<div class="container" style="margin-top: 20px;margin-bottom: 20px;margin-left: 20%;">
