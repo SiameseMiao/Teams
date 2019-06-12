@@ -33,9 +33,9 @@ public class Competition {
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private int rank;
     @Column(name = "competition_createTime")
-    private LocalDateTime createTime;
+    private LocalDateTime createTime=LocalDateTime.now();
     @Column(name = "competition_updateTime")
-    private LocalDateTime updateTime;
+    private LocalDateTime updateTime=LocalDateTime.now();
 
     public int getPkId() {
         return pkId;

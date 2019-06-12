@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -26,10 +27,30 @@ public class CompetitionServiceImpl implements CompetitionService {
     @Autowired
     CompetitionDao competitionDao;
     @Override
-    public void insertT(Competition competition) {
+    public void insertT(String name, String content, Constants.Status status, int rankId, LocalDateTime createTime, LocalDateTime updateTime) {
+        Competition competition=new Competition();
+        competition.setName(name);
+        competition.setContent(content);
+        competition.setStatus(status);
+        competition.setRank(rankId);
+        competition.setCreateTime(createTime);
+        competition.setUpdateTime(updateTime);
         competitionDao.save(competition);
     }
-
+    @Override
+    public void updateT(int pkId, String name, String content, LocalDateTime updateTime){
+        Competition competition=getCompetition(pkId);
+        competition.setName(name);
+        competition.setContent(content);
+        competition.setUpdateTime(updateTime);
+        competitionDao.save(competition);
+    }
+    @Override
+    public void forbid(int pkId,  Constants.Status status){
+        Competition competition=getCompetition(pkId);
+        competition.setStatus(status);
+        competitionDao.save(competition);
+    }
     @Override
     public void deleteById(int pkId) {
         competitionDao.delete(pkId);

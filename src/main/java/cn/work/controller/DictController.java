@@ -65,21 +65,18 @@ public class DictController {
         int dictId = Integer.valueOf(request.getParameter("id"));
         Dict dict =  dictService.getDictById(dictId);
         if(dict.getStatus()==Constants.Status.DISABLE){
-            dictService.forbid(dict.getDictId(),Constants.Status.ENABLE);}
+            dictService.forbid(dictId,Constants.Status.ENABLE);}
         else{
-            dictService.forbid(dict.getDictId(),Constants.Status.DISABLE);}
+            dictService.forbid(dictId,Constants.Status.DISABLE);}
         return "redirect:/dict/";
     }
     @RequestMapping(value = "delete")
     public String delete(ServletRequest request, RedirectAttributes redirectAttributes) {
         int dictId = Integer.valueOf(request.getParameter("id"));
-        String message = "删除字典成功";
         try {
             dictService.delete(dictId);
         }catch (Exception e){
-            message = "删除字典失败，该字典被使用";
         }
-        redirectAttributes.addFlashAttribute("message", message);
         return "redirect:/dict/";
     }
     @GetMapping(value = "new")
