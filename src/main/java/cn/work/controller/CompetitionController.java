@@ -1,6 +1,8 @@
 package cn.work.controller;
 
+import cn.work.entity.Category;
 import cn.work.entity.Competition;
+import cn.work.service.CategoryService;
 import cn.work.service.CompetitionService;
 import cn.work.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ import java.util.List;
 public class CompetitionController {
     @Autowired
     private CompetitionService competitionService;
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String list(Model model) {
@@ -38,16 +42,12 @@ public class CompetitionController {
 
     @PostMapping(value = "search")
     public String list(Model model, @RequestParam int rankId) {
-        List<Competition> competitions = competitionService.getCompetitionByRank(rankId);
-        model.addAttribute("competitions", competitions);
-        return "admin/articleManage";
-    }
-
-    @GetMapping(value = "list")
-    public String list(ServletRequest request, Model model) {
-        int rankId = Integer.valueOf(request.getParameter("rankId"));
-        List<Competition> competitions = competitionService.getCompetitionByRank(rankId);
-        model.addAttribute("competitions", competitions);
+        try {
+            Category rank = categoryService.getCategory(rankId);
+            List<Competition> competitions = competitionService.getCompetitionByRank(rank);
+            model.addAttribute("competitions", competitions);
+        }catch (Exception e){
+        }
         return "admin/articleManage";
     }
 
@@ -65,17 +65,23 @@ public class CompetitionController {
         int comId = Integer.valueOf(request.getParameter("id"));
         Competition competition = competitionService.getCompetition(comId);
         model.addAttribute("competition", competition);
+        model.addAttribute("rankId", 0);
         model.addAttribute("action", "update");
         return "admin/articleNew";
     }
 
     @PostMapping(value = "action")
-    public String updateCom(@Valid String op, @Valid Competition competition) {
+    public String updateCom(@RequestParam String op,@RequestParam int rankId, @Valid Competition competition,Model model) {
         if (op == "create" || op.equals("create")) {
-            competitionService.insertT(competition.getName(), competition.getContent(),Constants.Status.UNDERWAY,competition.getRank(), LocalDateTime.now(), LocalDateTime.now());
-        } else if (op == "update" || op.equals("update"))
-            competitionService.updateT(competition.getPkId(), competition.getName(), competition.getContent(), LocalDateTime.now());
-        return "redirect:/competition/";
+            try {
+                Category rank = categoryService.getCategory(rankId);
+                competitionService.insertT(competition.getName(), competition.getContent(),Constants.Status.UNDERWAY,rank, LocalDateTime.now().toString().replace("T"," "), LocalDateTime.now().toString().replace("T"," "));
+            }catch (Exception e){
+            }
+        } else if (op == "update" || op.equals("update")) {
+            competitionService.updateT(competition.getPkId(), competition.getName(), competition.getContent(), LocalDateTime.now().toString().replace("T", " "));
+        }
+        return "redirect:/competition";
     }
 
     @GetMapping("stop")

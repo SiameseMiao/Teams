@@ -3,6 +3,7 @@ package cn.work.service.impl;
 import cn.work.config.orm.jpa.DynamicSpecifications;
 import cn.work.config.orm.jpa.SearchFilter;
 import cn.work.dao.CompetitionDao;
+import cn.work.entity.Category;
 import cn.work.entity.Competition;
 import cn.work.service.CompetitionService;
 import cn.work.util.Constants;
@@ -12,7 +13,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -27,18 +27,18 @@ public class CompetitionServiceImpl implements CompetitionService {
     @Autowired
     CompetitionDao competitionDao;
     @Override
-    public void insertT(String name, String content, Constants.Status status, int rankId, LocalDateTime createTime, LocalDateTime updateTime) {
+    public void insertT(String name, String content, Constants.Status status, Category rank, String createTime, String updateTime) {
         Competition competition=new Competition();
         competition.setName(name);
         competition.setContent(content);
         competition.setStatus(status);
-        competition.setRank(rankId);
+        competition.setRank(rank);
         competition.setCreateTime(createTime);
         competition.setUpdateTime(updateTime);
         competitionDao.save(competition);
     }
     @Override
-    public void updateT(int pkId, String name, String content, LocalDateTime updateTime){
+    public void updateT(int pkId, String name, String content, String updateTime){
         Competition competition=getCompetition(pkId);
         competition.setName(name);
         competition.setContent(content);
@@ -66,8 +66,8 @@ public class CompetitionServiceImpl implements CompetitionService {
         return competitionDao.findAllByOrderByCreateTimeDesc();
     }
     @Override
-    public List<Competition> getCompetitionByRank(int rankId) {
-        return competitionDao.getCompetitionByRank(rankId);
+    public List<Competition> getCompetitionByRank(Category rank) {
+        return competitionDao.getCompetitionByRank(rank);
     }
     @Override
     public List<Competition> getAllCompetitionsByStatus(Constants.Status status) {

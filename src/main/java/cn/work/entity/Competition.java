@@ -6,6 +6,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -24,6 +26,7 @@ import java.time.LocalDateTime;
 public class Competition {
     @Column(name = "competition_id")
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int pkId;
     @Column(name = "competition_title")
     private String name;
@@ -32,13 +35,13 @@ public class Competition {
     private String content;
     @Column(name = "competition_status")
     private Constants.Status status = Constants.Status.UNDERWAY;
-    @ManyToOne(targetEntity = Category.class)
+    @ManyToOne(targetEntity = Category.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
-    private int rank;
+    private Category rank;
     @Column(name = "competition_createTime",columnDefinition="datetime")
-    private LocalDateTime createTime=LocalDateTime.now();
+    private String createTime=LocalDateTime.now().toString().replace("T"," ");
     @Column(name = "competition_updateTime",columnDefinition="datetime")
-    private LocalDateTime updateTime=LocalDateTime.now();
+    private String updateTime=LocalDateTime.now().toString().replace("T"," ");
 
     public int getPkId() {
         return pkId;
@@ -72,27 +75,27 @@ public class Competition {
         this.status = status;
     }
 
-    public int getRank() {
+    public Category getRank() {
         return rank;
     }
 
-    public void setRank(int rank) {
+    public void setRank(Category rank) {
         this.rank = rank;
     }
 
-    public LocalDateTime getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(LocalDateTime createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public LocalDateTime getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(LocalDateTime updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 }

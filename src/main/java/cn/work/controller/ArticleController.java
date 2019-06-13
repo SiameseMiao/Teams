@@ -47,7 +47,7 @@ public class ArticleController {
         List<Competition> list = new ArrayList<Competition>();
         for (Category top : rinks) {
             try {
-                List<Competition> Competition = competitionService.getCompetitionByRank(top.getId());
+                List<Competition> Competition = competitionService.getCompetitionByRank(top);
                 for (Competition temp : Competition) {
                     list.add(temp);
                 }

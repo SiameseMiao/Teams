@@ -15,7 +15,7 @@
     <a href="resourceStore.html" class="jump">资源存储</a>
     <a th:href="@{/category}" href="columnManage.html" class="jump">栏目管理</a>
     <div class="r_nav">
-        <form th:action="@{/dict/search}"  method="post" >
+        <form th:action="@{/competition/search}"  method="post" >
             <input type="text" placeholder="请输入级别id" name="rankId" class="search">
             <input type="submit" value="搜索" class="button" >
         </form>
@@ -41,10 +41,10 @@
             <td th:text="${iterStat.count}">1</td>
             <td th:text="${com.name}">名称</td>
             <td th:text="${com.status.desc}">状态</td>
-            <td th:text="${com.rank}">级别id</td>
+            <td th:text="${com.rank.getId()}">级别id</td>
             <td th:text="${com.createTime}">创建日期</td>
             <td th:text="${com.updateTime}">更新日期</td>
-            <td><a style="cursor:pointer;" href="@{competition/update(id=${com.pkId}">编辑</a>|<a th:href="@{/competition/stop(id=${com.pkId})}" th:text="(${com.status.value()}=='1')?'已结束':'正在进行'">状态</a></td>
+            <td><a style="cursor:pointer;" th:href="@{/competition/update(id=${com.pkId})}">编辑</a>|<a th:href="@{/competition/stop(id=${com.pkId})}" th:text="(${com.status.value()}=='1')?'已结束':'正在进行'">状态</a></td>
             <td><a th:href="@{/competition/delete(id=${com.pkId})}">删除</a></td>
         </tr>
         </tbody>

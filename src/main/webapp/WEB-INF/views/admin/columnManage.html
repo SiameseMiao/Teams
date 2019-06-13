@@ -36,7 +36,7 @@
             <td th:text="${category.fid}">父id</td>
             <td><a  name="popBox" style="cursor:pointer;" onclick="popBox();modify(this)">编辑</a>|<a th:href="@{/category/forbid(id=${category.id})}" th:text="(${category.status.value()}=='1')?'禁用':'启用'">状态</a></td>
             <td><a th:href="@{/category/delete(id=${category.id})}">删除</a></td>
-            <td th:if="${category.status.value()}=='1'"><a th:if="${category.fid}==0" name="popBox" style="cursor:pointer;" onclick="popBox1();modify1(this)">添加</a><a th:if="${category.fid}!=0" th:href="@{competition/create(rankId=${category.id})}">添加竞赛</a></td>
+            <td th:if="${category.status.value()}=='1'"><a th:if="${category.fid}==0" name="popBox" style="cursor:pointer;" onclick="popBox1();modify1(this)">添加</a><a th:if="${category.fid}!=0" th:href="@{/competition/create(rankId=${category.id})}">添加竞赛</a></td>
         </tr>
         </tbody>
     </table>

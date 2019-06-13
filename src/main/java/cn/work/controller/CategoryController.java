@@ -80,7 +80,7 @@ public class CategoryController {
                 for (Category top : categorys) {
                     int rankId = top.getId();
                     try {
-                        List<Competition> competitions = competitionService.getCompetitionByRank(rankId);
+                        List<Competition> competitions = competitionService.getCompetitionByRank(top);
                         for (Competition temp : competitions)
                             try {
                                 competitionService.deleteById(temp.getPkId());
@@ -96,7 +96,7 @@ public class CategoryController {
             } catch (Exception e) {
             }
             else try {
-                List<Competition> competitions = competitionService.getCompetitionByRank(categoryId);
+                List<Competition> competitions = competitionService.getCompetitionByRank(category);
                 for (Competition temp : competitions)
                     try {
                         competitionService.deleteById(temp.getPkId());
@@ -118,7 +118,7 @@ public class CategoryController {
             for (Category top : categorys) {
                 int rankId = top.getId();
                 try {
-                    List<Competition> competitions = competitionService.getCompetitionByRank(rankId);
+                    List<Competition> competitions = competitionService.getCompetitionByRank(top);
                     for (Competition temp : competitions)
                         try {
                             competitionService.deleteById(temp.getPkId());
@@ -134,7 +134,7 @@ public class CategoryController {
         } catch (Exception e) {
         }
         else try {
-            List<Competition> competitions = competitionService.getCompetitionByRank(categoryId);
+            List<Competition> competitions = competitionService.getCompetitionByRank(category);
             for (Competition temp : competitions)
                 try {
                     competitionService.deleteById(temp.getPkId());

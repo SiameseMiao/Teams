@@ -4,6 +4,7 @@ import cn.work.config.orm.PlatformRepository;
 import cn.work.entity.Competition;
 import cn.work.util.Constants;
 import org.springframework.stereotype.Repository;
+import cn.work.entity.Category;
 
 import java.util.List;
 
@@ -31,10 +32,10 @@ public interface CompetitionDao extends PlatformRepository<Competition,Integer> 
     /**
      * fetch data from Competition c
      *
-     * @param rankId rank
+     * @param rank rank
      * @return List<Competition>
      */
-    public List<Competition> getCompetitionByRank(int rankId);
+    public List<Competition> getCompetitionByRank(Category rank);
     /**
      * fetch data from Competition c
      *
