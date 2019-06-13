@@ -35,9 +35,9 @@ public class Competition {
     @ManyToOne(targetEntity = Category.class)
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private int rank;
-    @Column(name = "competition_createTime")
+    @Column(name = "competition_createTime",columnDefinition="datetime")
     private LocalDateTime createTime=LocalDateTime.now();
-    @Column(name = "competition_updateTime")
+    @Column(name = "competition_updateTime",columnDefinition="datetime")
     private LocalDateTime updateTime=LocalDateTime.now();
 
     public int getPkId() {

@@ -42,9 +42,9 @@
             <td th:text="${com.name}">名称</td>
             <td th:text="${com.status.desc}">状态</td>
             <td th:text="${com.rank}">级别id</td>
-            <td th:text="${com.createTime}">级别id</td>
-            <td th:text="${com.updateTime}">级别id</td>
-            <td><a  name="popBox" style="cursor:pointer;" href="">编辑</a>|<a th:href="@{/competition/stop(id=${com.pkId})}" th:text="(${com.status.value()}=='1')?'已结束':'正在进行'">状态</a></td>
+            <td th:text="${com.createTime}">创建日期</td>
+            <td th:text="${com.updateTime}">更新日期</td>
+            <td><a style="cursor:pointer;" href="@{competition/update(id=${com.pkId}">编辑</a>|<a th:href="@{/competition/stop(id=${com.pkId})}" th:text="(${com.status.value()}=='1')?'已结束':'正在进行'">状态</a></td>
             <td><a th:href="@{/competition/delete(id=${com.pkId})}">删除</a></td>
         </tr>
         </tbody>

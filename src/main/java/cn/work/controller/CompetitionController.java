@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -54,9 +53,9 @@ public class CompetitionController {
 
     @GetMapping(value = "create")
     public String createCom(ServletRequest request,Model model) {
-        int rinkId = Integer.valueOf(request.getParameter("rankId"));
+        int rankId = Integer.valueOf(request.getParameter("rankId"));
         model.addAttribute("competition", new Competition());
-        model.addAttribute("rankId", "rinkId");
+        model.addAttribute("rankId", rankId);
         model.addAttribute("action", "create");
         return "admin/articleNew";
     }
@@ -71,7 +70,7 @@ public class CompetitionController {
     }
 
     @PostMapping(value = "action")
-    public String updateCom(@Valid String op, @Valid Competition competition, Model model, HttpServletRequest request) {
+    public String updateCom(@Valid String op, @Valid Competition competition) {
         if (op == "create" || op.equals("create")) {
             competitionService.insertT(competition.getName(), competition.getContent(),Constants.Status.UNDERWAY,competition.getRank(), LocalDateTime.now(), LocalDateTime.now());
         } else if (op == "update" || op.equals("update"))
@@ -79,8 +78,8 @@ public class CompetitionController {
         return "redirect:/competition/";
     }
 
-    @GetMapping("forbid")
-    public String forbidCompetition(ServletRequest request) {
+    @GetMapping("stop")
+    public String stopCompetition(ServletRequest request) {
         int competitionId = Integer.valueOf(request.getParameter("id"));
         Competition competition = competitionService.getCompetition(competitionId);
         if (competition.getStatus() == Constants.Status.OVER)

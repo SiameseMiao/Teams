@@ -10,40 +10,28 @@
 
 <div class="nav">
     <h2>新建竞赛</h2>
-
-    <div class="r_nav">
-        <form method="" name="" >
-            <input type="text" placeholder="请输入搜索内容" class="search">
-            <input type="submit" value="搜索" class="button" >
-        </form>
-    </div>
 </div>
 
 <div class="outside">
 
-    <form action="#" th:action="@{/}" method="post">
+    <form action="#" th:action="@{/competition/action}" method="post">
+        <input  type="hidden"  name="op" id="op" class="border" th:value="${action}"/>
+        <input  type="hidden"  name="pkId" id="pkId" class="border" th:value="*{pkId}"/>
         <table class="infor" style="border-collapse:separate; border-spacing:0px 10px;">
             <tr>
                 <td><label for="title">标题：</label></td>
-                <td><input  type="text"  name="title" id="title" class="border"/></td>
+                <td><input  type="text"  name="name" id="title" class="border" th:value="*{name}"/></td>
             </tr>
             <tr>
-                <td><label for="author">作者：</label></td>
-                <td><input  type="text"  name="author" id="author" class="border"/></td>
+                <td><label for="grade">级别id：</label></td>
+                <td>
+                    <input th:if="${action}=='update'" type="text"  readonly="readonly" name="rank" id="grade" class="border" th:value="*{rank}"/>
+                    <input th:if="${action}=='create'" type="text"  readonly="readonly" name="rank" id="grade" class="border" th:value="${rankId}"/>
+                </td>
             </tr>
-            <tr>
-                <td><label for="type">分类：</label></td>
-                <td><input  type="text"  name="type" id="type" class="border"/></td>
-            </tr>
-            <tr>
-                <td><label for="grade">级别：</label></td>
-                <td><input  type="text"  name="grade" id="grade" class="border"/></td>
-            </tr>
-
-
             <tr>
                 <td><label for="content">内容：</label></td>
-                <td><textarea  name="content" id="content" ></textarea></td>
+                <td><textarea  name="content" id="content"  th:value="*{content}"></textarea></td>
             </tr>
 
             <tr>
@@ -51,10 +39,10 @@
                 <td><a href='javascript:void(0);' class="select">选择文件</a><input  type="file"  name="file " id="file" class="myFileUpload" onchange="change(event);" /><input type="text" id="show"></td>
             </tr>
 
-            <tr>
-                <td></td>
-                <td><a href='javascript:void(0);' class="select" class="pos">选择图片</a><input  type="file"  name="pic" id="pic"  class="myFileUpload" class="pos" onchange="xmTanUploadImg(this)"  accept="image/*"/><img src="" id="selectImg"></td>
-            </tr>
+            <!--<tr>-->
+                <!--<td></td>-->
+                <!--<td><a href='javascript:void(0);' class="select" class="pos">选择图片</a><input  type="file"  name="pic" id="pic"  class="myFileUpload" class="pos" onchange="xmTanUploadImg(this)"  accept="image/*"/><img src="" id="selectImg"></td>-->
+            <!--</tr>-->
 
             <tr>
                 <td></td>

@@ -15,12 +15,6 @@ import java.util.List;
  */
 @Repository
 public interface CompetitionDao extends PlatformRepository<Competition,Integer> {
-    ///**
-    // * fetch data from Competition c
-    // *
-    // * @return List<Competition>
-    // */
-    //List<Competition> getAll();
     /**
      * fetch data from Competition c
      *

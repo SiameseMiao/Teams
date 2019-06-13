@@ -16,7 +16,7 @@
     <h2><a th:href="@{/dict}">数据字典</a></h2>
     <a href="userManagePage.html" class="jump">用户管理</a>
     <a href="resourceStore.html" class="jump">资源存储</a>
-    <a href="articleManage.html" class="jump">文章管理</a>
+    <a th:href="@{/competition}" class="jump">文章管理</a>
     <a th:href="@{/category}" href="columnManage.html" class="jump">栏目管理</a>
     <div class="r_nav">
         <form th:action="@{/dict/search}"  method="post" >
