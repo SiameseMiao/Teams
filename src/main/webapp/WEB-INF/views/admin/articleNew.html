@@ -15,44 +15,67 @@
 <div class="outside">
 
     <form action="#" th:action="@{/competition/action}" method="post">
-        <input  type="hidden"  name="op" id="op" class="border" th:value="${action}"/>
-        <input type="hidden" name="rankId"  class="border" th:value="${rankId}"/>
+        <input type="hidden" name="op" id="op" class="border" th:value="${action}"/>
+        <input type="hidden" name="rankId" class="border" th:value="${rankId}"/>
         <table class="infor" style="border-collapse:separate; border-spacing:0px 10px;">
             <tr th:if="${action}=='update'">
                 <td><label for="pkId">id：</label></td>
-                <td><input  type="text"  readonly="readonly" name="pkId" id="pkId" class="border" th:value="${competition.pkId}"/></td>
+                <td><input type="text" readonly="readonly" name="pkId" id="pkId" class="border"
+                           th:value="${competition.pkId}"/></td>
             </tr>
             <tr>
                 <td><label for="name">标题：</label></td>
-                <td><input  type="text"  name="name" id="name" class="border" th:value="${competition.name}"/></td>
+                <td><input type="text" name="name" id="name" class="border" th:value="${competition.name}"/></td>
             </tr>
             <tr>
                 <td><label for="content">内容：</label></td>
-                <td><textarea  name="content" id="content"  th:text="${competition.content}">122</textarea></td>
+                <td><textarea name="content" id="content" th:text="${competition.content}">122</textarea></td>
             </tr>
 
             <tr>
                 <td></td>
-                <td><a href='javascript:void(0);' class="select">选择文件</a><input  type="file"  name="file " id="file" class="myFileUpload" onchange="change(event);" /><input type="text" id="show"></td>
+                <td><a href='javascript:void(0);' class="select">选择文件</a><input type="file" name="file " id="file"
+                                                                                class="myFileUpload"
+                                                                                onchange="change(event);"/><input
+                        type="text" id="show"></td>
             </tr>
 
             <tr>
                 <td></td>
-                <td><a href='javascript:void(0);' class="select pos">选择图片</a><input  type="file"  name="pic" id="pic"  class="myFileUpload pos"  onchange="xmTanUploadImg(this)"  accept="image/*"/><img src="" id="selectImg"></td>
+                <td><a href='javascript:void(0);' class="select pos">选择图片</a><input type="file" name="pic" id="pic"
+                                                                                    class="myFileUpload pos"
+                                                                                    onchange="xmTanUploadImg(this)"
+                                                                                    accept="image/*"/><img src=""
+                                                                                                           id="selectImg">
+                </td>
             </tr>
 
             <tr>
                 <td></td>
                 <td></td>
-                <td><input type="submit" name="" value="提交" class="submit" /></td>
+                <td><input type="submit" name="" value="提交" class="submit"/></td>
             </tr>
         </table>
 
     </form>
 
-
-
 </div>
+<script> function xmTanUploadImg(obj) {
+    var file = obj.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function (e) {    /*成功读取文件*/
+        var img = document.getElementById("selectImg");
+        img.src = e.target.result;   /*或 img.src = this.result / e.target == this*/
+    };
+}
 
+function change(e) {
+    var show = document.getElementById('show');
+    var src = e.target || window.event.srcElement; /*获取事件源，兼容chrome/IE*/
+    src.style.background = 'red';/*下面把路径截取为文件名*/
+    var filename = src.value;
+    show.value = filename.substring(filename.lastIndexOf('\\') + 1);
+}</script>
 </body>
 </html>
