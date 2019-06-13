@@ -14,7 +14,10 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 /**
- * Competition Class @author <b>Siamese_miao</b>, Copyright &#169; 2018 @version 1.0, 2019-06-04 12:38
+ * Competition Class
+ *
+ * @author <b>Siamese_miao</b>, Copyright &#169; 2018
+ * @version 1.0, 2019-06-04 12:38
  */
 @Entity
 @Table(name = "t_competition")

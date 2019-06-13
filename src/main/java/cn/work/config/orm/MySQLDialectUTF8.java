@@ -3,7 +3,7 @@ package cn.work.config.orm;
 import org.hibernate.dialect.MySQL5InnoDBDialect;
 
 /**
- * CompetitionDao Class
+ * MySQLDialectUTF8 Class
  *
  * @author <b>Siamese_miao</b>, Copyright &#169; 2018
  * @version 1.0, 2019-06-12 18:40

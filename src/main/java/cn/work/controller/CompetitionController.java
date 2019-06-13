@@ -6,8 +6,11 @@ import cn.work.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +19,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * CompetitionDao Class
+ * CompetitionController Class
  *
  * @author <b>Siamese_miao</b>, Copyright &#169; 2018
  * @version 1.0, 2019-06-12 18:55
