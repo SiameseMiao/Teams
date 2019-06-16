@@ -15,8 +15,8 @@
     <a href="resourceStore.html" class="jump">资源存储</a>
     <a th:href="@{/category}" href="columnManage.html" class="jump">栏目管理</a>
     <div class="r_nav">
-        <form th:action="@{/competition/search}"  method="post" >
-            <input type="text" placeholder="请输入级别id" name="rankId" class="search">
+        <form th:action="@{/competition}"  method="get" >
+            <input type="text" placeholder="请输入级别id" name="s_EQ_rank" class="search" th:value="${param.s_EQ_rank}">
             <input type="submit" value="搜索" class="button" >
         </form>
     </div>
@@ -52,13 +52,11 @@
 </div>
 <div class="fy" style="margin: 50px 0 20px 43%;">
     <ul class="pagination">
-        <li><a href="#" >&laquo;</a></li>
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&raquo;</a></li>
+        <li><a th:if="${pageNumber}!=1" th:href="@{/competition(page=1,s_EQ_rank=${param.s_EQ_rank})}" >首页</a></li>
+        <li><a th:if="${pageNumber}!=1" th:href="@{/competition(page=${pageNumber-1},s_EQ_rank=${param.s_EQ_rank})}">上一页</a></li>
+        <li><a th:text="${totalE}+'条记录，共'+${totalPage}+'页，第'+${pageNumber}+'页'"></a></li>
+        <li><a th:if="${pageNumber}!=${totalPage}" th:href="@{/competition(page=${pageNumber+1},s_EQ_rank=${param.s_EQ_rank})}">下一页</a></li>
+        <li><a th:if="${pageNumber}!=${totalPage}" th:href="@{/competition(page=${totalPage},s_EQ_rank=${param.s_EQ_rank})}">尾页</a></li>
     </ul>
 </div>
 </body>

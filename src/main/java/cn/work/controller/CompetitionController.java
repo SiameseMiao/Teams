@@ -5,7 +5,9 @@ import cn.work.entity.Competition;
 import cn.work.service.CategoryService;
 import cn.work.service.CompetitionService;
 import cn.work.util.Constants;
+import cn.work.util.HttpServlet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.ServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Map;
 
 /**
  * CompetitionController Class
@@ -28,26 +30,21 @@ import java.util.List;
 @Controller
 @RequestMapping("/competition")
 public class CompetitionController {
+    private static final int PAGE_SIZE = 2;
     @Autowired
     private CompetitionService competitionService;
     @Autowired
     private CategoryService categoryService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String list(Model model) {
-        List<Competition> competitions = competitionService.getAllCompetitions();
+    public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,Model model, ServletRequest request) {
+        Map<String, Object> searchParams = HttpServlet.getParametersStartingWith(request, "s_");
+        Page<Competition> competitions  = competitionService.getEntityPage(searchParams,pageNumber, PAGE_SIZE);
         model.addAttribute("competitions", competitions);
-        return "admin/articleManage";
-    }
-
-    @PostMapping(value = "search")
-    public String list(Model model, @RequestParam int rankId) {
-        try {
-            Category rank = categoryService.getCategory(rankId);
-            List<Competition> competitions = competitionService.getCompetitionByRank(rank);
-            model.addAttribute("competitions", competitions);
-        }catch (Exception e){
-        }
+        model.addAttribute("totalPage", competitions.getTotalPages());
+        model.addAttribute("totalE", competitions.getTotalElements());
+        model.addAttribute("pageNumber", pageNumber);
+        model.addAttribute("searchParams", HttpServlet.encodeParameterStringWithPrefix(searchParams, "s_"));
         return "admin/articleManage";
     }
 

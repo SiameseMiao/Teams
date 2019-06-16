@@ -1,10 +1,10 @@
 package cn.work.dao;
 
 import cn.work.config.orm.PlatformRepository;
+import cn.work.entity.Category;
 import cn.work.entity.Competition;
 import cn.work.util.Constants;
 import org.springframework.stereotype.Repository;
-import cn.work.entity.Category;
 
 import java.util.List;
 

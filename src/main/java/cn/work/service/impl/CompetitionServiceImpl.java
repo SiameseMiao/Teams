@@ -2,6 +2,7 @@ package cn.work.service.impl;
 
 import cn.work.config.orm.jpa.DynamicSpecifications;
 import cn.work.config.orm.jpa.SearchFilter;
+import cn.work.dao.CategoryDao;
 import cn.work.dao.CompetitionDao;
 import cn.work.entity.Category;
 import cn.work.entity.Competition;
@@ -10,6 +11,7 @@ import cn.work.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,8 @@ public class CompetitionServiceImpl implements CompetitionService {
 
     @Autowired
     CompetitionDao competitionDao;
+    @Autowired
+    CategoryDao categoryDao;
     @Override
     public void insertT(String name, String content, Constants.Status status, Category rank, String createTime, String updateTime) {
         Competition competition=new Competition();
@@ -82,13 +86,27 @@ public class CompetitionServiceImpl implements CompetitionService {
         return competitionDao.getCompetitionsByName(name);
     }
 
+
+    @Override
     public Page<Competition> getEntityPage(Map<String, Object> filterParams, int pageNumber, int pageSize){
-        PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize);
+        PageRequest pageRequest = buildPageRequest(pageNumber - 1, pageSize,"updateTime");
         Specification<Competition> spec = buildSpecification(filterParams);
         return competitionDao.findAll(spec,pageRequest);
     }
 
+    private PageRequest buildPageRequest(int pageNumber, int pageSize, String sortType) {
+        Sort sort  = new Sort(Sort.Direction.DESC, "updateTime");
+        return new PageRequest(pageNumber , pageSize, sort);
+    }
+
     private Specification<Competition> buildSpecification(Map<String, Object> filterParams) {
+        if(!filterParams.values().isEmpty()){
+            try {
+                int rankId=Integer.valueOf(filterParams.get("EQ_rank").toString());
+                Category rank = categoryDao.findOne(rankId);
+                filterParams.put("EQ_rank",rank);
+            }catch (Exception e){}
+        }
         Map<String, SearchFilter> filters = SearchFilter.parse(filterParams);
         Specification<Competition> spec = DynamicSpecifications.bySearchFilter(filters.values(), Competition.class);
         return spec;

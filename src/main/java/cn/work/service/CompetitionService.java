@@ -1,10 +1,12 @@
 package cn.work.service;
 
-import cn.work.entity.Competition;
 import cn.work.entity.Category;
+import cn.work.entity.Competition;
 import cn.work.util.Constants;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -22,4 +24,5 @@ public interface CompetitionService {
     public List<Competition> getCompetitionByRank(Category rank);
     public List<Competition> vagueSearch(String str1,String str2);
     public List<Competition> getAllCompetitionsByName(String name);
+    public Page<Competition> getEntityPage(Map<String, Object> filterParams, int pageNumber, int pageSize);
 }
