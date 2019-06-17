@@ -47,6 +47,7 @@
         <div class="col-md-4 " style="background-color: yellow;background: url(../static/shuru.png) no-repeat;height: 55px;"
              th:style="'background-color: yellow;background: url('+@{/img/shuru.png}+') no-repeat;height: 55px;'">
             <form th:action="@{/search}"  method="get" >
+                <input type="hidden" name="s_EQ_rank" class="search_text" style="display: inline-block;margin-top: 17px;" th:value="${param.s_EQ_rank}"/>
                 <input type="text" placeholder="请输入关键字搜索" name="s_LIKE_name" class="search_text" style="display: inline-block;margin-top: 17px;" th:value="${param.s_LIKE_name}"/>
                 <span class="input-group-btn" style="display: inline-block;left: 70px;">
 						<button class="btn btn-default" type="submit">
@@ -85,13 +86,14 @@
 
     <a th:href="@{/}" style="color: black;">分类</a>
     >>
-    <a href="#" style="color: black;" th:text="${type}">综合</a>
+    <a th:href="@{/categories(id=${type.getId()})}" style="color: black;" th:text="${type.getName()}">综合</a>
+    >>
     <a href="#" style="color: black;" th:text="${rank}">国际</a>
 </div>
 <!--正文-->
 <div class="container" style="margin-top: 20px;margin-bottom: 20px;margin-left: 20%;">
     <div class="row" style="margin-top: 20px;">
-        <div th:each="item,itemStat:${competition}">
+        <div th:each="item:${competitions}">
             <div class="col-xs-3" style="margin-top: 20px;padding: 0;box-shadow: 0 0 20px darkgray;margin-right: 30px;height: 340px;" >
                 <div class="tu1" >
                     <img src="../static/img/挑战杯海报.png"  style="width: 100%;height: 190px;"/>
@@ -107,11 +109,11 @@
 <!--翻页-->
 <div class="fy" style="margin: 50px 0 20px 43%;">
     <ul class="pagination">
-        <li><a th:if="${pageNumber}!=1" th:href="@{/competition(page=1,s_LIKE_name=${param.s_LIKE_name},s_EQ_rank=${param.s_EQ_rank})}" >首页</a></li>
-        <li><a th:if="${pageNumber}!=1" th:href="@{/competition(page=${pageNumber-1},s_LIKE_name=${param.s_LIKE_name},s_EQ_rank=${param.s_EQ_rank})}">上一页</a></li>
+        <li><a th:if="${pageNumber}!=1" th:href="@{/search(page=1,s_LIKE_name=${param.s_LIKE_name},s_EQ_rank=${param.s_EQ_rank})}" >首页</a></li>
+        <li><a th:if="${pageNumber}!=1" th:href="@{/search(page=${pageNumber-1},s_LIKE_name=${param.s_LIKE_name},s_EQ_rank=${param.s_EQ_rank})}">上一页</a></li>
         <li><a th:text="${totalE}+'条记录，共'+${totalPage}+'页，第'+${pageNumber}+'页'"></a></li>
-        <li><a th:if="${pageNumber}!=${totalPage}" th:href="@{/competition(page=${pageNumber+1},s_LIKE_name=${param.s_LIKE_name},s_EQ_rank=${param.s_EQ_rank})}">下一页</a></li>
-        <li><a th:if="${pageNumber}!=${totalPage}" th:href="@{/competition(page=${totalPage},s_LIKE_name=${param.s_LIKE_name},s_EQ_rank=${param.s_EQ_rank})}">尾页</a></li>
+        <li><a th:if="${pageNumber}!=${totalPage}" th:href="@{/search(page=${pageNumber+1},s_LIKE_name=${param.s_LIKE_name},s_EQ_rank=${param.s_EQ_rank})}">下一页</a></li>
+        <li><a th:if="${pageNumber}!=${totalPage}" th:href="@{/search(page=${totalPage},s_LIKE_name=${param.s_LIKE_name},s_EQ_rank=${param.s_EQ_rank})}">尾页</a></li>
     </ul>
 </div>
 
