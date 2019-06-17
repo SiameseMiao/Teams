@@ -58,5 +58,13 @@ public class ArticleController {
         model.addAttribute("itemList",list);
         return "categoriesPage";
     }
+    @RequestMapping(value = "/categories/container",method = RequestMethod.GET)
+    public String container(Model model, ServletRequest request){
+        int id = Integer.valueOf(request.getParameter("itemId"));
+        Competition competition = competitionService.getCompetition(id);
+        model.addAttribute("compe",competition);
+        return "mainContainer";
+    }
+
 
 }
