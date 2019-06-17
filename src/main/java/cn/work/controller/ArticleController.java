@@ -54,7 +54,7 @@ public class ArticleController {
             } catch (Exception e) {
             }
         }
-        model.addAttribute("type",category.getName());
+        model.addAttribute("type",category);
         model.addAttribute("itemList",list);
         model.addAttribute("rankItem",ranks);
         return "categoriesPage";

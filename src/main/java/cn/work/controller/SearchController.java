@@ -4,6 +4,7 @@ import cn.work.entity.Category;
 import cn.work.entity.Competition;
 import cn.work.service.CategoryService;
 import cn.work.service.CompetitionService;
+import cn.work.util.Constants;
 import cn.work.util.HttpServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,11 +33,32 @@ public class SearchController {
     CategoryService categoryService;
     @Autowired
     CompetitionService competitionService;
+
     @RequestMapping(value = "/search",method= RequestMethod.GET)
     public String search(Model map, @RequestParam String search){
-        map.addAttribute("itemList",competitionService.getAllCompetitionsByName(search));
-        //System.out.println(competitionService.getAllCompetitionsByName(search));
+        search="%"+search+"%";
+        List<Competition> competitions=competitionService.vagueSearch(search,search);
+        map.addAttribute("itemList",competitions);
         return "searchPage";
+    }
+    @RequestMapping(value = "/search2",method= RequestMethod.GET)
+    public String search2(Model map, @RequestParam String search,@RequestParam int type){
+        search="%"+search+"%";
+        Category category = categoryService.getCategory(type);
+        List<Category> ranks = categoryService.findCategoriesByFidAndStatus(type, Constants.Status.ENABLE);
+        List<Competition> list = new ArrayList<Competition>();
+        for (Category top : ranks) {
+            try {
+                List<Competition> Competition = competitionService.getAllCompetitionsByRankAndName(top,search);
+                for (Competition temp : Competition) {
+                    list.add(temp);
+                }
+            } catch (Exception e) {
+            }
+        }
+        map.addAttribute("type",category);
+        map.addAttribute("itemList",list);
+        return "categoriesPage";
     }
     @RequestMapping(value = "/container",method = RequestMethod.GET)
     public String container(Model model, ServletRequest request){

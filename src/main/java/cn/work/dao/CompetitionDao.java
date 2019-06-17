@@ -43,12 +43,13 @@ public interface CompetitionDao extends PlatformRepository<Competition,Integer> 
      * @param str2 content
      * @return List<Competition>
      */
-    public List<Competition> getCompetitionsByNameOrContentLike(String str1,String str2);
+    public List<Competition> getCompetitionsByNameLikeOrContentLike(String str1,String str2);
     /**
      * fetch data from Competition c
      *
+     * @param rank rank
      * @param name name
      * @return List<Competition>
      */
-    public List<Competition> getCompetitionsByName(String name);
+    public List<Competition> getCompetitionsByRankAndNameLike(Category rank,String name);
 }

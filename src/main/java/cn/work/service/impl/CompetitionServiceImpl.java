@@ -79,11 +79,11 @@ public class CompetitionServiceImpl implements CompetitionService {
     }
     @Override
     public List<Competition> vagueSearch(String str1,String str2) {
-        return competitionDao.getCompetitionsByNameOrContentLike(str1,str2);
+        return competitionDao.getCompetitionsByNameLikeOrContentLike(str1,str2);
     }
     @Override
-    public List<Competition> getAllCompetitionsByName(String name) {
-        return competitionDao.getCompetitionsByName(name);
+    public List<Competition> getAllCompetitionsByRankAndName(Category rank,String name) {
+        return competitionDao.getCompetitionsByRankAndNameLike(rank,name);
     }
 
 
