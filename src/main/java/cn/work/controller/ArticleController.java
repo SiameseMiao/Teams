@@ -43,9 +43,9 @@ public class ArticleController {
     public String categories(Model model, ServletRequest request){
         int categoryId = Integer.valueOf(request.getParameter("id"));
         Category category = categoryService.getCategory(categoryId);
-        List<Category> rinks = categoryService.getCategoriesByFid(categoryId);
+        List<Category> ranks = categoryService.findCategoriesByFidAndStatus(categoryId, Constants.Status.ENABLE);
         List<Competition> list = new ArrayList<Competition>();
-        for (Category top : rinks) {
+        for (Category top : ranks) {
             try {
                 List<Competition> Competition = competitionService.getCompetitionByRank(top);
                 for (Competition temp : Competition) {
@@ -56,14 +56,8 @@ public class ArticleController {
         }
         model.addAttribute("type",category.getName());
         model.addAttribute("itemList",list);
+        model.addAttribute("rankItem",ranks);
         return "categoriesPage";
-    }
-    @RequestMapping(value = "/categories/container",method = RequestMethod.GET)
-    public String container(Model model, ServletRequest request){
-        int id = Integer.valueOf(request.getParameter("itemId"));
-        Competition competition = competitionService.getCompetition(id);
-        model.addAttribute("compe",competition);
-        return "mainContainer";
     }
 
 
