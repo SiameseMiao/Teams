@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../static/css/sidebar.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/sidebar.css" th:href="@{/css/sidebar.css}">
 	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 	<title>分类-大学生竞赛信息网</title>
 	<!-- 新 Bootstrap 核心 CSS 文件 -->
@@ -13,7 +13,7 @@
 
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="../static/css/daohanglan1.css" />
+	<link rel="stylesheet" href="../static/css/daohanglan1.css" th:href="@{/css/daohanglan1.css}"/>
 	<style>.search_text{
 		outline: none;
 		font-family: "微软雅黑";
@@ -102,18 +102,11 @@
 		<ul style="list-style:none">
 
 			<li>
-				<a href="">首页</a>
+				<a th:href="@{/}">首页</a>
 			</li>
 
-			<li>
-				<a href="">国际</a>
-			</li>
-			<li>
-				<a href="">省级</a>
-			</li>
-
-			<li>
-				<a href="#">国家</a>
+			<li th:each="rank:${rankItem}">
+				<a th:href="@{/search(s_EQ_rank=${rank.getId()})}" th:text="${rank.getName()}"></a>
 			</li>
 		</ul>
 
@@ -142,11 +135,6 @@
 </div>
 
 <!--翻页-->
-<div class="fy" style="margin: 50px 0 20px 43%;">
-	<ul class="pagination">
-		<li th:each="rank:${rankItem}"><a th:href="@{/search(s_EQ_rank=${rank.getId()})}" th:text="${rank.getName()}"></a></li>
-	</ul>
-</div>
 
 <!--底部-->
 <div class="di" style="background: url(../static/img/页面底部背景1.png) no-repeat;background-size: 100%;height: 100px;margin: 78px 0 0 0;padding: 0;"

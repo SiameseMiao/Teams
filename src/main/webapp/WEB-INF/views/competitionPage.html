@@ -12,7 +12,7 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/css/daohanglan1.css" />
+    <link rel="stylesheet" href="../static/css/daohanglan1.css"  th:href="@{/css/daohanglan1.css}"/>
     <style>.search_text{
         outline: none;
         font-family: "微软雅黑";
@@ -107,7 +107,7 @@
 </div>
 
 <!--翻页-->
-<div class="fy" style="margin: 50px 0 20px 43%;">
+<div class="fy" style="margin: 50px 0 20px 38%;">
     <ul class="pagination">
         <li><a th:if="${pageNumber}!=1" th:href="@{/search(page=1,s_LIKE_name=${param.s_LIKE_name},s_EQ_rank=${param.s_EQ_rank})}" >首页</a></li>
         <li><a th:if="${pageNumber}!=1" th:href="@{/search(page=${pageNumber-1},s_LIKE_name=${param.s_LIKE_name},s_EQ_rank=${param.s_EQ_rank})}">上一页</a></li>

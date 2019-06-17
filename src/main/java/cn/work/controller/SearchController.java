@@ -58,6 +58,7 @@ public class SearchController {
         }
         map.addAttribute("type",category);
         map.addAttribute("itemList",list);
+        map.addAttribute("rankItem",ranks);
         return "categoriesPage";
     }
     @RequestMapping(value = "/container",method = RequestMethod.GET)
@@ -70,7 +71,6 @@ public class SearchController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,Model model, ServletRequest request) {
         Map<String, Object> searchParams = HttpServlet.getParametersStartingWith(request, "s_");
-        //System.out.println(searchParams);
         if(!searchParams.values().isEmpty()){
             try {
                 int rankId=Integer.valueOf(searchParams.get("EQ_rank").toString());
@@ -81,7 +81,6 @@ public class SearchController {
             }catch (Exception e){}
         }
         Page<Competition> competitions  = competitionService.getEntityPage(searchParams,pageNumber, PAGE_SIZE);
-        //System.out.println(searchParams);
         model.addAttribute("competitions", competitions);
         model.addAttribute("totalPage", competitions.getTotalPages());
         model.addAttribute("totalE", competitions.getTotalElements());
