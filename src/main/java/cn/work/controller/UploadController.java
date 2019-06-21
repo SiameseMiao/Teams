@@ -1,21 +1,12 @@
 package cn.work.controller;
 
-import cn.work.entity.Dict;
-import cn.work.service.DictService;
-import cn.work.util.Constants;
-import cn.work.util.HttpServlet;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -44,7 +35,7 @@ public class UploadController {
             ServletFileUpload upload = new ServletFileUpload(factory);
             upload.setHeaderEncoding("UTF-8");
             if(!ServletFileUpload.isMultipartContent(request)){
-//                return;
+               return null;
             }
             List<FileItem> list = upload.parseRequest(request);
             for(FileItem item : list){
