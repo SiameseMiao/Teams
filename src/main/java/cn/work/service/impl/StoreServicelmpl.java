@@ -29,15 +29,15 @@ public class StoreServicelmpl implements StoreService {
     }
     @Override
     public List<ResourceStore> getResourceStoreByType(String storageType){
-       return storeDao.findByTypeOrderBySort(storageType);
+       return storeDao.findByStorageType(storageType);
     }
     @Override
     public List<ResourceStore> getResourceStoreByTypeAndStore(String storageType,int Store){
-        return storeDao.findByTypeAndStoreOrderBySortAsc(storageType,Store);
+        return storeDao.findByStorageTypeAndStore(storageType,Store);
     }
     @Override
     public List<ResourceStore>  getResourceStore(){
-          return storeDao.findAllByOrderByResourceStoreIdAsc();
+          return storeDao.findAllByOrderByPkIDAsc();
     }
     @Override
     public ResourceStore getResourceStoreById(int pkID){

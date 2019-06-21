@@ -31,7 +31,7 @@ public interface StoreDao extends CrudRepository<ResourceStore,Integer> {
      * @param type storageType
      * @return List<ResourceStore>
      */
-    List<ResourceStore> findByTypeOrderBySort(String type);
+    List<ResourceStore> findByStorageType(String type);
     /**
      * fetch data from ResourceStore d
      *
@@ -39,18 +39,18 @@ public interface StoreDao extends CrudRepository<ResourceStore,Integer> {
      * @param store store
      * @return List<ResourceStore>
      */
-    List<ResourceStore> findByTypeAndStoreOrderBySortAsc(String type, int store);
+    List<ResourceStore> findByStorageTypeAndStore(String type, int store);
     /**
      * fetch data from ResourceStore d
      *
      * @return List<ResourceStore>
      */
-    List<ResourceStore> findAllByOrderByResourceStoreIdAsc();
+    List<ResourceStore> findAllByOrderByPkIDAsc();
     /**
      * fetch data from ResourceStore d
      *
      * @param type storageType
      * @return ResourceStore
      */
-    ResourceStore findFirstByTypeOrderBySortDesc(String type);
+    ResourceStore findFirstByStorageType(String type);
 }
