@@ -7,9 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 /**
+ * CategoryDao Class
  *
- * @author 刘畅
- * @version 2019/5/24
+ * @author <b>Siamese_miao</b>, Copyright &#169; 2018
+ * @version 1.0, 2019-06-04 13:16
  */
 @Repository
 public interface CategoryDao extends CrudRepository<Category, Integer> {
@@ -35,11 +36,4 @@ public interface CategoryDao extends CrudRepository<Category, Integer> {
      * @return List<Category>
      */
     public List<Category> findCategoriesByFidAndStatus(int fid, Constants.Status status);
-//    /**
-//     * fetch data from Category
-//     *
-//     * @param name name
-//     * @return Category
-//     */
-//    public Category findCategoriesByName(String name);
 }

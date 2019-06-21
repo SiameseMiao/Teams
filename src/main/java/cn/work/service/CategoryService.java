@@ -5,9 +5,10 @@ import cn.work.util.Constants;
 
 import java.util.List;
 /**
+ * CategoryServiceClass
  *
- * @author 刘畅
- * @version 2019/5/24
+ * @author <b>Siamese_miao</b>, Copyright &#169; 2018
+ * @version 1.0, 2019-06-04 13:20
  */
 public interface CategoryService {
     public void insertT( String name, int fid, Constants.Status status);
@@ -18,5 +19,5 @@ public interface CategoryService {
     public List<Category> getAllCategorys();
     public List<Category> getCategoriesByFid(int fid);
     public List<Category> findCategoriesByFidAndStatus(int fid, Constants.Status status);
-//    public Category getCategoriesByName(String name);
+
 }

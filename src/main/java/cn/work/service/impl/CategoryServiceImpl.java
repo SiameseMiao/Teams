@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 /**
+ * CategoryServiceImpl Class
  *
- * @author 刘畅
- * @version 2019/5/24
+ * @author <b>Siamese_miao</b>, Copyright &#169; 2018
+ * @version 1.0, 2019-06-04 13:22
  */
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -69,8 +70,4 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryDao.findCategoriesByFidAndStatus(fid, status);
     }
 
-    //@Override
-    //public Category getCategoriesByName(String name) {
-    //    return categoryDao.findCategoriesByName(name);
-    //}
 }

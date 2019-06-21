@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * Category Class
  *
  * @author <b>Siamese_miao</b>, Copyright &#169; 2018
- * @version 1.0, 2019-06-04 12:48
+ * @version 1.0, 2019-06-04 12:28
  */
 @Entity
 @Table(name = "t_category")

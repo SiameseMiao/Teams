@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * DictDao Class
  *
- * @author <b>Siamese_miao</b>, Copyright &#169; 2018
+ * @author <b>Zhengchunyu2016012011</b>, Copyright &#169; 2018
  * @version 1.0, 2019-05-25 0:00
  */
 @Repository

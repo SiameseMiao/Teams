@@ -9,9 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * CompetitionService Class
  *
- * @author 刘畅
- * @version 2019/5/24
+ * @author <b>Siamese_miao</b>, Copyright &#169; 2018
+ * @version 1.0, 2019-06-04 13:30
  */
 public interface CompetitionService {
     public void insertT(String name, String content, Constants.Status status, Category rank, String createTime, String updateTime);
