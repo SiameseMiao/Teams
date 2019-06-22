@@ -2,18 +2,12 @@ package cn.work.controller;
 
 import cn.work.entity.ResourceStore;
 import cn.work.service.StoreService;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +16,11 @@ import javax.validation.Valid;
 import java.io.*;
 import java.util.List;
 
+/**
+ *
+ * @author cj
+ * @version 2019/6/13
+ */
 @Controller
 @RequestMapping("/resourceStore")
 public class UploadController {

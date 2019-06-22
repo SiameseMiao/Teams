@@ -8,7 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
+/**
+ *
+ * @author cj
+ * @version 2019/6/18
+ */
 @Repository
 public interface StoreDao extends CrudRepository<ResourceStore,Integer> {
     /**

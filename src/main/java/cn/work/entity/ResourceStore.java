@@ -5,7 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+/**
+ *
+ * @author cj
+ * @version 2019/6/13
+ */
 @Entity
 @Table(name = "t_store")
 public class ResourceStore {

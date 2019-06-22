@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+/**
+ *
+ * @author cj
+ * @version 2019/6/18
+ */
 @Service
 public class StoreServicelmpl implements StoreService {
     @Autowired
