@@ -69,9 +69,12 @@ public class SearchController {
     public String container(Model model, ServletRequest request){
         int id = Integer.valueOf(request.getParameter("itemId"));
         Competition competition = competitionService.getCompetition(id);
-        ResourceStore resourceStore=storeService.getResourceStoreByStore(id);
+        try{
+            ResourceStore resourceStore=storeService.getResourceStoreByStore(id);
+            model.addAttribute("res",resourceStore);
+        }catch (Exception e){
+        }
         model.addAttribute("compe",competition);
-        model.addAttribute("res",resourceStore);
         return "mainContainer";
     }
     @RequestMapping(value = "", method = RequestMethod.GET)

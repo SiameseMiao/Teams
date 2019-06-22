@@ -124,7 +124,7 @@
 		<div th:each="item,itemStat:${itemList}">
 			<div class="col-xs-3" style="margin-top: 20px;padding: 0;box-shadow: 0 0 20px darkgray;margin-right: 30px;height: 340px;" >
 				<div class="tu1" >
-					<img src="../static/img/挑战杯海报.png"  style="width: 100%;height: 190px;"/>
+					<img src="../static/img/挑战杯海报.png" th:src="@{/img/挑战杯海报.png}"  style="width: 100%;height: 190px;"/>
 					<a th:href="@{/search/container(itemId=${item.getPkId()})}" target="_blank">
 						<p th:text="${item.getName()}" style="color: black;font-size: 1.7rem;font-family: 黑体;padding: 15px;height: 80px;">2019年第十六届“挑战杯”全国大学生课外学术科技作品竞赛</p></a>
 					<p  style="color: #5517C3;font-size: 2rem;font-family: 黑体;font-weight:bold;padding: 0 0 15px 0px;line-height: 1px;display: inline-block;float: right;margin-right:10px ;" th:text="${item.getStatus().getDesc()}">报名中</p>
