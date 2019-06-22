@@ -17,7 +17,7 @@
     <form action="#" th:action="@{/competition/action}" method="post" enctype="multipart/form-data">
         <input type="hidden" name="op" id="op" class="border" th:value="${action}"/>
         <input type="hidden" name="rankId" class="border" th:value="${rankId}"/>
-        <input type="hidden" name="pkID" class="border" th:value="${res.pkID}"/>
+        <input type="hidden" name="pkID" class="border" th:value="${res.pkID}" th:if="${res}"/>
         <table class="infor" style="border-collapse:separate; border-spacing:0px 10px;">
             <tr th:if="${action}=='update'">
                 <td><label for="pkId">id：</label></td>
@@ -38,7 +38,7 @@
                 <td><a href='javascript:void(0);' class="select">选择文件</a><input type="file" name="file1" id="file"
                                                                                 class="myFileUpload"
                                                                                 onchange="change(event);"/><input
-                        type="text" id="show"></td>
+                        type="text" id="show" th:value="(${res})?${res.desStore}:''"></td>
             </tr>
 
 <!--            <tr>-->

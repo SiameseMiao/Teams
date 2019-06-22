@@ -2,8 +2,10 @@ package cn.work.controller;
 
 import cn.work.entity.Category;
 import cn.work.entity.Competition;
+import cn.work.entity.ResourceStore;
 import cn.work.service.CategoryService;
 import cn.work.service.CompetitionService;
+import cn.work.service.StoreService;
 import cn.work.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,8 @@ public class CategoryController {
     private CategoryService categoryService;
     @Autowired
     private CompetitionService competitionService;
+    @Autowired
+    private StoreService storeService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String list(Model model) {
@@ -84,6 +88,11 @@ public class CategoryController {
                         for (Competition temp : competitions)
                             try {
                                 competitionService.deleteById(temp.getPkId());
+                                try{
+                                    ResourceStore resourceStore=storeService.getResourceStoreByStore(temp.getPkId());
+                                    storeService.delete(resourceStore.getPkID());
+                                }catch (Exception e1){
+                                }
                             } catch (Exception e) {
                             }
                     } catch (Exception e) {
@@ -100,6 +109,11 @@ public class CategoryController {
                 for (Competition temp : competitions)
                     try {
                         competitionService.deleteById(temp.getPkId());
+                        try{
+                            ResourceStore resourceStore=storeService.getResourceStoreByStore(temp.getPkId());
+                            storeService.delete(resourceStore.getPkID());
+                        }catch (Exception e1){
+                        }
                     } catch (Exception e) {
                     }
             } catch (Exception e) {
@@ -122,6 +136,11 @@ public class CategoryController {
                     for (Competition temp : competitions)
                         try {
                             competitionService.deleteById(temp.getPkId());
+                            try{
+                                ResourceStore resourceStore=storeService.getResourceStoreByStore(temp.getPkId());
+                                storeService.delete(resourceStore.getPkID());
+                            }catch (Exception e1){
+                            }
                         } catch (Exception e) {
                         }
                 } catch (Exception e) {
@@ -135,11 +154,17 @@ public class CategoryController {
         }
         else try {
             List<Competition> competitions = competitionService.getCompetitionByRank(category);
-            for (Competition temp : competitions)
+            for (Competition temp : competitions){
                 try {
                     competitionService.deleteById(temp.getPkId());
+                    try{
+                        ResourceStore resourceStore=storeService.getResourceStoreByStore(temp.getPkId());
+                        storeService.delete(resourceStore.getPkID());
+                    }catch (Exception e1){
+                    }
                 } catch (Exception e) {
                 }
+            }
         } catch (Exception e) {
         }
         try {
