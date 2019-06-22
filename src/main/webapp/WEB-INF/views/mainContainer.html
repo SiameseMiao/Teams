@@ -97,6 +97,7 @@
 				<p style="text-align: center;font-size: 3.5rem;font-weight: bold;margin-top: 10px;" th:text="${compe.getName()}">2019年第十六届“挑战杯”全国大学生那个课外学术科技作品竞赛</p>
                 <p style="font-size: small;text-align: center" th:text="'创建时间：'+${compe.getCreateTime()}+' 更新时间：'+${compe.getUpdateTime()}+' 竞赛状态：'+${compe.getStatus().getDesc()}"></p>
                 <p style="font-size: medium" th:text="${compe.getContent()}"></p>
+				<a th:href="@{/resourceStore/download(path=${res.getDesStore()})}"><p style="font-size: medium" th:text="${res.getName()}"></p></a>
 			</div>
 		</div>
 		<!--底部-->

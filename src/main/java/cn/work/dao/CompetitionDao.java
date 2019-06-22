@@ -52,4 +52,10 @@ public interface CompetitionDao extends PlatformRepository<Competition,Integer> 
      * @return List<Competition>
      */
     public List<Competition> getCompetitionsByRankAndNameLike(Category rank,String name);
+    /**
+     * fetch data from Competition c
+     *
+     * @return Competition
+     */
+    public Competition findFirstByOrderByPkIdDesc();
 }

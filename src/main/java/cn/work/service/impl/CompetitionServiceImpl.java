@@ -79,6 +79,10 @@ public class CompetitionServiceImpl implements CompetitionService {
         return competitionDao.getCompetitionByStatus(status);
     }
     @Override
+    public Competition getLastest(){
+        return competitionDao.findFirstByOrderByPkIdDesc();
+    }
+    @Override
     public List<Competition> vagueSearch(String str1,String str2) {
         return competitionDao.getCompetitionsByNameLikeOrContentLike(str1,str2);
     }

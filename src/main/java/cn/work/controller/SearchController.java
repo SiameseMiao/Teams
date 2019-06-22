@@ -2,8 +2,10 @@ package cn.work.controller;
 
 import cn.work.entity.Category;
 import cn.work.entity.Competition;
+import cn.work.entity.ResourceStore;
 import cn.work.service.CategoryService;
 import cn.work.service.CompetitionService;
+import cn.work.service.StoreService;
 import cn.work.util.Constants;
 import cn.work.util.HttpServlet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,8 @@ public class SearchController {
     CategoryService categoryService;
     @Autowired
     CompetitionService competitionService;
+    @Autowired
+    private StoreService storeService;
 
     @RequestMapping(value = "/search",method= RequestMethod.GET)
     public String search(Model map, @RequestParam String search){
@@ -65,7 +69,9 @@ public class SearchController {
     public String container(Model model, ServletRequest request){
         int id = Integer.valueOf(request.getParameter("itemId"));
         Competition competition = competitionService.getCompetition(id);
+        ResourceStore resourceStore=storeService.getResourceStoreByStore(id);
         model.addAttribute("compe",competition);
+        model.addAttribute("res",resourceStore);
         return "mainContainer";
     }
     @RequestMapping(value = "", method = RequestMethod.GET)

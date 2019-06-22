@@ -35,11 +35,10 @@ public interface StoreDao extends CrudRepository<ResourceStore,Integer> {
     /**
      * fetch data from ResourceStore d
      *
-     * @param type storageType
      * @param store store
-     * @return List<ResourceStore>
+     * @return ResourceStore
      */
-    List<ResourceStore> findByStorageTypeAndStore(String type, int store);
+    ResourceStore findByStore(int store);
     /**
      * fetch data from ResourceStore d
      *

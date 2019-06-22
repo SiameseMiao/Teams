@@ -14,9 +14,10 @@
 
 <div class="outside">
 
-    <form action="#" th:action="@{/competition/action}" method="post">
+    <form action="#" th:action="@{/competition/action}" method="post" enctype="multipart/form-data">
         <input type="hidden" name="op" id="op" class="border" th:value="${action}"/>
         <input type="hidden" name="rankId" class="border" th:value="${rankId}"/>
+        <input type="hidden" name="pkID" class="border" th:value="${res.pkID}"/>
         <table class="infor" style="border-collapse:separate; border-spacing:0px 10px;">
             <tr th:if="${action}=='update'">
                 <td><label for="pkId">id：</label></td>
@@ -34,21 +35,21 @@
 
             <tr>
                 <td></td>
-                <td><a href='javascript:void(0);' class="select">选择文件</a><input type="file" name="file " id="file"
+                <td><a href='javascript:void(0);' class="select">选择文件</a><input type="file" name="file1" id="file"
                                                                                 class="myFileUpload"
                                                                                 onchange="change(event);"/><input
                         type="text" id="show"></td>
             </tr>
 
-            <tr>
-                <td></td>
-                <td><a href='javascript:void(0);' class="select pos">选择图片</a><input type="file" name="pic" id="pic"
-                                                                                    class="myFileUpload pos"
-                                                                                    onchange="xmTanUploadImg(this)"
-                                                                                    accept="image/*"/><img src=""
-                                                                                                           id="selectImg">
-                </td>
-            </tr>
+<!--            <tr>-->
+<!--                <td></td>-->
+<!--                <td><a href='javascript:void(0);' class="select pos">选择图片</a><input type="file" name="pic" id="pic"-->
+<!--                                                                                    class="myFileUpload pos"-->
+<!--                                                                                    onchange="xmTanUploadImg(this)"-->
+<!--                                                                                    accept="image/*"/><img src=""-->
+<!--                                                                                                           id="selectImg">-->
+<!--                </td>-->
+<!--            </tr>-->
 
             <tr>
                 <td></td>

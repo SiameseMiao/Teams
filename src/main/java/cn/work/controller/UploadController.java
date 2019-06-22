@@ -1,76 +1,71 @@
 package cn.work.controller;
 
+import cn.work.entity.ResourceStore;
+import cn.work.service.StoreService;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.io.*;
 import java.util.List;
 
-
 @Controller
-@RequestMapping("/upload")
+@RequestMapping("/resourceStore")
 public class UploadController {
-
-
-
-    @RequestMapping(value = "/upload",method = RequestMethod.POST)
-    public String list(Model model, HttpServletRequest request){
-        String savePath = "D:/SSH-FILE";
-        File file = new File(savePath);
-
-        if (!file.exists() && !file.isDirectory()) {
-            System.out.println(savePath+"目录不存在，需要创建");
-            //创建目录
-            file.mkdir();
-        }
-        String message = "";
-        try{
-            DiskFileItemFactory factory = new DiskFileItemFactory();
-            ServletFileUpload upload = new ServletFileUpload(factory);
-            upload.setHeaderEncoding("UTF-8");
-            if(!ServletFileUpload.isMultipartContent(request)){
-               return null;
-            }
-            List<FileItem> list = upload.parseRequest(request);
-            for(FileItem item : list){
-                if(item.isFormField()){
-                    String name = item.getFieldName();
-                    String value = item.getString("UTF-8");
-                    System.out.println(name + "=" + value);
-                }else{
-                    String filename = item.getName();
-                    System.out.println(filename);
-                    if(filename==null || filename.trim().equals("")){
-                        continue;
-                    }
-                    filename = filename.substring(filename.lastIndexOf("\\")+1);
-                    InputStream in = item.getInputStream();
-                    FileOutputStream out = new FileOutputStream(savePath + "\\" + filename);
-                    byte buffer[] = new byte[1024];
-
-                    int len = 0;
-
-                    while((len=in.read(buffer))>0){
-                        //使用FileOutputStream输出流将缓冲区的数据写入到指定的目录(savePath + "\\" + filename)当中
-                        out.write(buffer, 0, len);
-                    }
-                    in.close();
-                    out.close();
-                    item.delete();
-                    message = "文件上传成功！";
-                }
-            }
-        }catch (Exception e) {
-            message= "文件上传失败！";
-            e.printStackTrace();
-        }
-        return  null;
+    @Autowired
+    private StoreService storeService;
+    @RequestMapping(value = "",method = RequestMethod.GET)
+    public String list(Model model){
+        List<ResourceStore> resourceStores=storeService.getResourceStore();
+        model.addAttribute("resourceStores", resourceStores);
+        //System.out.println(resourceStores);
+        return "admin/resourceStore";
     }
 
+    @PostMapping(value = "update")
+    public String updateResourceStore(@Valid ResourceStore resourceStore) {
+        System.out.println(resourceStore.getPkID()+" "+resourceStore.getName()+" "+resourceStore.getStore()+" "+resourceStore.getDesStore());
+        storeService.update(resourceStore.getPkID(), resourceStore.getName(), resourceStore.getStore(), resourceStore.getDesStore(), 0);
+        return "redirect:/resourceStore/";
+    }
+    @RequestMapping(value = "delete")
+    public String delete(ServletRequest request) {
+        int resourceStoreId = Integer.valueOf(request.getParameter("id"));
+        try {
+            storeService.delete(resourceStoreId);
+        }catch (Exception e){
+        }
+        return "redirect:/resourceStore/";
+    }
+
+    @RequestMapping(value = "/download", method = RequestMethod.GET)
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String path=request.getParameter("path");
+        path = new String(path.getBytes("ISO-8859-1"), "UTF-8");
+        File file = new File(path);
+        InputStream in = new FileInputStream(file);
+        OutputStream os = response.getOutputStream();
+        response.addHeader("Content-Disposition", "attachment;filename=" + new String(file.getName().getBytes("UTF-8"), "ISO-8859-1"));
+        response.addHeader("Content-Length", file.length() + "");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/octet-stream");
+        int data = 0;
+        while ((data = in.read()) != -1) os.write(data);
+        os.close();
+        in.close();
+        return;
+    }
 }

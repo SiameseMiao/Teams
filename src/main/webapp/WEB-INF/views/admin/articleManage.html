@@ -12,7 +12,7 @@
     <h2><a th:href="@{/}" href="articleManage.html">文章管理</a></h2>
     <a th:href="@{/dict}" class="jump">数据字典</a>
     <a href="userManagePage.html" class="jump">用户管理</a>
-    <a href="resourceStore.html" class="jump">资源存储</a>
+    <a th:href="@{/resourceStore}" class="jump">资源存储</a>
     <a th:href="@{/category}" href="columnManage.html" class="jump">栏目管理</a>
     <div class="r_nav">
         <form th:action="@{/competition}"  method="get" >

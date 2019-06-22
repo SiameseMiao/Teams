@@ -26,4 +26,5 @@ public interface CompetitionService {
     public List<Competition> vagueSearch(String str1,String str2);
     public List<Competition> getAllCompetitionsByRankAndName(Category rank,String name);
     public Page<Competition> getEntityPage(Map<String, Object> filterParams, int pageNumber, int pageSize);
+    public Competition getLastest();
 }
