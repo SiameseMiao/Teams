@@ -60,8 +60,8 @@
 				<img src="../static/img/未登录头像02.png" th:src="@{/img/未登录头像02.png}" th:if="${session.userIfo}" class="img-responsive" style="width:7%;display: inline-block;margin-top: 30px;float: right;"/>
                 <img src="../static/img/未登录头像02.png" th:src="@{/img/未登录头像02.png}" th:if="${session.userIfo}==null" class="img-responsive" style="width:7%;display: inline-block;margin-top: 30px;float: right;"/>
 				<div class="dl" style="display: inline-block;color: white;margin-top: 40px;float: right;margin-right: 10px;">
-					<a th:href="@{/home/personal}" th:if="${session.userIfo}" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">个人中心</a>
-                    <a th:href="@{/home/userLogin}+'?backTo=/index.html'" th:if="${session.userIfo}==null" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">登录</a>
+					<a th:href="@{/personal}" th:if="${session.userIfo}" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">个人中心</a>
+                    <a th:href="@{/userLogin}+'?backTo=/index.html'" th:if="${session.userIfo}==null" target="_blank" class="dl1" style="color: white;font-size: 1.5rem;">登录</a>
 				</div>
 			</div>
 		</div>
@@ -95,7 +95,7 @@
 		</div>
         <div class="di" style="background: url(../static/img/页面底部背景1.png) no-repeat;background-size: 100%;height: 100px;margin: 160px 0 0 0;padding: 0;"
              th:style="'background: url('+@{/img/页面底部背景1.png}+') no-repeat;background-size: 100%;height: 100px;margin: 160px 0 0 0;padding: 0;'">
-		<p style="text-align: center;color: white;;font-size: 1rem;margin-bottom:0;padding-top: 70px;">版权所有@2019yangy保留所有权利<a th:href="@{/dict}">a</a></p>
+		<p style="text-align: center;color: white;;font-size: 1rem;margin-bottom:0;padding-top: 70px;">版权所有@2019yangy保留所有权利</p>
 
 		</div>
 		<img src="../static/img/背景右.png"  th:src="@{/img/背景右.png}" th:style="'position: absolute;top:-20px;left: 85%;width: 15%;z-index: -5;'"/>

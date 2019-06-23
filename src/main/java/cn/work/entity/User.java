@@ -6,12 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * User Class @author 刘畅 @version 2019/5/24
  */
 @Entity
-@Table(name = "T_USER")
+@Table(name = "t_user")
 public class User {
     @Id
     @Column(name = "user_id")
@@ -25,14 +27,24 @@ public class User {
     private String userPhone;
     @Column(name = "user_email")
     private String userEmail;
+    private boolean isRememberMe;
 
-    public Integer getUserId() {
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public boolean isRememberMe() {
+        return isRememberMe;
+    }
+
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setRememberMe(boolean rememberMe) {
+        this.isRememberMe = rememberMe;
     }
+
 
     public String getUserName() {
         return userName;

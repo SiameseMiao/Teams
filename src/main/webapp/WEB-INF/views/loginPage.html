@@ -64,9 +64,9 @@
 					<div class="you">
 						<div style="width: 100%;height: 150px;padding: 100px 80px 50px 80px;">
 							<p style="float: left;font-size: 2rem;color:white">登录</p>
-							<a th:href="@{/home/userRegister}"><p style="float: right;font-size: 2rem;color: #cb8cea;">注册</p></a>
+							<a th:href="@{/userRegister}"><p style="float: right;font-size: 2rem;color: #cb8cea;">注册</p></a>
 						</div>
-						<form th:action="@{/home/login}"  method="post" >
+						<form th:action="@{/login}"  method="post" >
 						<div style="height: 40px; background-color: #8261e0;border-radius: 20px 20px 20px 20px;margin: 0 30px 20px 30px;">
 							<img src="../static/img/unLoginHeadImg.png" th:src="@{/img/unLoginHeadImg.png}" style="width: 15%;"/>
 							<input type="text" placeholder="请输入手机号" name="userName"  class="search_text1" style="display: inline-block;border: 0;background-color: #8261e0;margin-top: 5px;color: white;"/>
@@ -76,10 +76,9 @@
                                 <img src="../static/img/登录密码.png" th:src="@{/img/登录密码.png}" style="width: 18%;"/>
 							<input type="password" placeholder="请输入密码" name="userPwd"  class="search_text2" style="display: inline-block;border: 0;background-color: #8261e0;width: 160px;margin-top: 5px;"/>
 							<img src="../static/img/密码眼睛白色.png" th:src="@{/img/密码眼睛白色.png}" style="width: 10%;display: inline-block;"/>
-							
 						</div>
 						<div style="height: 20px; margin: 0 30px 20px 100px;">
-							<a th:href="@{/home/userRegister}" style="color: white;">新用户，注册</a>
+							<a th:href="@{/userRegister}" style="color: white;">新用户，注册</a>
 						</div>
 						<div style="height: 40px; background-color: white;border-radius: 20px 20px 20px 20px;margin: 0 30px 20px 30px;padding-left:90px; ">
 							<input type="submit" value="登录" onclick="r();" style="text-align: center;color: #822fab;font-size: 2rem;padding-top: 5px;border: 0;background-color: white;"/>
