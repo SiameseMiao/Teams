@@ -53,11 +53,11 @@ public class UploadController {
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String path=request.getParameter("path");
-        path = new String(path.getBytes("ISO-8859-1"), "UTF-8");
+        path = new String(path.getBytes("UTF-8"), "UTF-8");
         File file = new File(path);
         InputStream in = new FileInputStream(file);
         OutputStream os = response.getOutputStream();
-        response.addHeader("Content-Disposition", "attachment;filename=" + new String(file.getName().getBytes("UTF-8"), "ISO-8859-1"));
+        response.addHeader("Content-Disposition", "attachment;filename=" + new String(file.getName().getBytes("UTF-8"), "UTF-8"));
         response.addHeader("Content-Length", file.length() + "");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/octet-stream");

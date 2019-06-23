@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -74,6 +73,10 @@ public class CompetitionController {
     public String updateCom(ServletRequest request, Model model) {
         int comId = Integer.valueOf(request.getParameter("id"));
         Competition competition = competitionService.getCompetition(comId);
+        try {
+            ResourceStore resourceStore=storeService.getResourceStoreByStore(comId);
+            model.addAttribute("res", resourceStore);
+        }catch (Exception e){}
         model.addAttribute("competition", competition);
         model.addAttribute("rankId", 0);
         model.addAttribute("action", "update");
@@ -83,11 +86,11 @@ public class CompetitionController {
     @PostMapping(value = "action")
     public String updateCom(HttpServletRequest request) {
         String op="create";
-        int rankId=1;
+        int rankId=0;
         String name="";
         String content="";
-        int pkID=1;
-        int pkId=1;
+        int pkID=0;
+        int pkId=0;
         String savePath = "D:/SSH-FILE";
         File file = new File(savePath);
         String filename="";
@@ -146,7 +149,10 @@ public class CompetitionController {
             }
         } else if (op == "update" || op.equals("update")) {
             competitionService.updateT(pkId, name, content, LocalDateTime.now().toString().replace("T", " "));
-            storeService.update(pkID,filename,pkId,savePath + "\\" + filename,0);
+            if(pkID!=0)
+                storeService.update(pkID,filename,pkId,savePath + "\\" + filename,0);
+            else
+                storeService.insert(filename,pkId,savePath + "\\" + filename,0);
         }
         return "redirect:/competition";
     }
