@@ -55,7 +55,7 @@ public  class DictServiceImpl implements DictService {
     };
     @Override
     public List<Dict> getDict(){
-        return dictDao.findAllByOrderByDictIdAsc();
+        return dictDao.findAllByOrderByTypeAscSortAsc();
     };
     @Override
     public Dict getDictById(int id){

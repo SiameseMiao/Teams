@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -36,7 +34,6 @@ public class DictController {
     public String list(Model model){
         List<Dict> dicts=dictService.getDict();
         model.addAttribute("dicts", dicts);
-        //System.out.println(dicts);
         return "admin/dict";
     }
     @RequiresPermissions("dict:select")
@@ -46,20 +43,12 @@ public class DictController {
         model.addAttribute("dicts", dicts);
         return "admin/dict";
     }
-    @RequiresPermissions("dict:select")
-    @GetMapping(value = "list")
-    public String list(ServletRequest request,Model model){
-        String type=request.getParameter("type");
-        List<Dict> dicts=dictService.getDictByType(type);
-        model.addAttribute("dicts", dicts);
-        return "admin/dict";
-    }
     @RequiresPermissions("dict:update")
     @PostMapping(value = "update")
     public String updateDict(@Valid Dict dict, Model model) {
         model.addAttribute("type", dict.getType());
         dictService.update(dict.getDictId(), dict.getType(), dict.getCode(), dict.getName(), dict.getSort(), Constants.Status.ENABLE);
-        return "redirect:/dict/list";
+        return "redirect:/dict/";
     }
     @RequiresPermissions("dict:save")
     @PostMapping(value = "create")

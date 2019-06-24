@@ -14,7 +14,7 @@
 
 <div class="nav">
     <a th:href="@{/competition}" class="jump">文章管理</a>
-    <a th:href="@{/dict}" class="jump">数据字典</a>
+    <h2><a th:href="@{/dict}" >数据字典</a></h2>
     <a th:href="@{/manager}" class="jump">用户管理</a>
     <a th:href="@{/resourceStore}" class="jump">资源存储</a>
     <a th:href="@{/category}" href="columnManage.html" class="jump">栏目管理</a>
@@ -41,8 +41,8 @@
         <th><a  name="popBox" style="cursor:pointer;" onclick="popBox1()">添加</a></th></tr>
         </thead>
         <tbody>
-        <tr th:each="dict,iterStat:${dicts}">
-            <td th:text="${iterStat.count}">1</td>
+        <tr th:each="dict:${dicts}">
+            <td th:text="${dict.dictId}">1</td>
             <td th:text="${dict.type}">2</td>
             <td th:text="${dict.code}">3</td>
             <td th:text="${dict.name}">4</td>

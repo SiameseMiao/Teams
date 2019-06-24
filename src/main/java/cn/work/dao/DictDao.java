@@ -27,7 +27,7 @@ public interface DictDao extends CrudRepository<Dict,Integer> {
      *
      * @return List<Dict>
      */
-    List<Dict> findAllByOrderByDictIdAsc();
+    List<Dict> findAllByOrderByTypeAscSortAsc();
     /**
      * fetch data from Dict d
      *
