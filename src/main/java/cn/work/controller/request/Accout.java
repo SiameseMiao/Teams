@@ -13,6 +13,15 @@ public class Accout {
     private String userPwd;
     private String userPhone;
     private String userEmail;
+    private boolean rememberMe;
+
+    public boolean getRememberMe() {
+        return rememberMe;
+    }
+
+    public void setRememberMe(boolean isRememberMe) {
+        this.rememberMe = isRememberMe;
+    }
 
     public int getUserId() {
         return userId;

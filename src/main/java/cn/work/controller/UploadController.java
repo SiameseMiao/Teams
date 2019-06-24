@@ -2,6 +2,7 @@ package cn.work.controller;
 
 import cn.work.entity.ResourceStore;
 import cn.work.service.StoreService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,12 +35,14 @@ public class UploadController {
         return "admin/resourceStore";
     }
 
+    @RequiresPermissions("file:update")
     @PostMapping(value = "update")
     public String updateResourceStore(@Valid ResourceStore resourceStore) {
         System.out.println(resourceStore.getPkID()+" "+resourceStore.getName()+" "+resourceStore.getStore()+" "+resourceStore.getDesStore());
         storeService.update(resourceStore.getPkID(), resourceStore.getName(), resourceStore.getStore(), resourceStore.getDesStore(), 0);
         return "redirect:/resourceStore/";
     }
+    @RequiresPermissions("file:delete")
     @RequestMapping(value = "delete")
     public String delete(ServletRequest request) {
         int resourceStoreId = Integer.valueOf(request.getParameter("id"));
@@ -50,6 +53,7 @@ public class UploadController {
         return "redirect:/resourceStore/";
     }
 
+    @RequiresPermissions("file:download")
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String path=request.getParameter("path");

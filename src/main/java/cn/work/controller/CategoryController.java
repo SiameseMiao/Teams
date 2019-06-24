@@ -7,6 +7,7 @@ import cn.work.service.CategoryService;
 import cn.work.service.CompetitionService;
 import cn.work.service.StoreService;
 import cn.work.util.Constants;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,7 @@ public class CategoryController {
     @Autowired
     private StoreService storeService;
 
+    @RequiresPermissions("category:select")
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String list(Model model) {
         List<Category> categories = categoryService.getCategoriesByFid(0);
@@ -59,12 +61,14 @@ public class CategoryController {
         }
     }
 
+    @RequiresPermissions("category:update")
     @PostMapping(value = "update")
     public String updateCategory(@Valid Category category) {
         categoryService.updateT(category.getId(), category.getName(), Constants.Status.ENABLE);
         return "redirect:/category";
     }
 
+    @RequiresPermissions("category:save")
     @PostMapping(value = "create")
     public String createCategory(@Valid Category category) {
         categoryService.insertT(category.getName(), category.getFid(), Constants.Status.ENABLE);
@@ -123,6 +127,7 @@ public class CategoryController {
         return "redirect:/category";
     }
 
+    @RequiresPermissions("category:delete")
     @RequestMapping(value = "delete")
     public String delete(ServletRequest request) {
         int categoryId = Integer.valueOf(request.getParameter("id"));

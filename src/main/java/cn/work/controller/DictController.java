@@ -3,6 +3,7 @@ package cn.work.controller;
 import cn.work.entity.Dict;
 import cn.work.service.DictService;
 import cn.work.util.Constants;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -28,6 +31,7 @@ import java.util.List;
 public class DictController {
     @Autowired
     private DictService dictService;
+    @RequiresPermissions("dict:select")
     @RequestMapping(value = "",method = RequestMethod.GET)
     public String list(Model model){
         List<Dict> dicts=dictService.getDict();
@@ -35,12 +39,14 @@ public class DictController {
         //System.out.println(dicts);
         return "admin/dict";
     }
+    @RequiresPermissions("dict:select")
     @PostMapping(value = "search")
     public String list(Model model, @RequestParam String type){
         List<Dict> dicts=dictService.getDictByType(type);
         model.addAttribute("dicts", dicts);
         return "admin/dict";
     }
+    @RequiresPermissions("dict:select")
     @GetMapping(value = "list")
     public String list(ServletRequest request,Model model){
         String type=request.getParameter("type");
@@ -48,18 +54,21 @@ public class DictController {
         model.addAttribute("dicts", dicts);
         return "admin/dict";
     }
+    @RequiresPermissions("dict:update")
     @PostMapping(value = "update")
     public String updateDict(@Valid Dict dict, Model model) {
         model.addAttribute("type", dict.getType());
         dictService.update(dict.getDictId(), dict.getType(), dict.getCode(), dict.getName(), dict.getSort(), Constants.Status.ENABLE);
         return "redirect:/dict/list";
     }
+    @RequiresPermissions("dict:save")
     @PostMapping(value = "create")
-    public String createDict(@Valid Dict dict) {
+    public String createDict(@Valid Dict dict)  {
         float sort = dictService.getMaxSort(dict.getType());
         dictService.insert(dict.getType(), dict.getCode(), dict.getName(),sort+1,Constants.Status.ENABLE);
         return "redirect:/dict/";
     }
+
     @GetMapping("forbid")
     public String forbidDict(ServletRequest request) {
         int dictId = Integer.valueOf(request.getParameter("id"));
@@ -70,6 +79,7 @@ public class DictController {
             dictService.forbid(dictId,Constants.Status.DISABLE);}
         return "redirect:/dict/";
     }
+    @RequiresPermissions("dict:delete")
     @RequestMapping(value = "delete")
     public String delete(ServletRequest request, RedirectAttributes redirectAttributes) {
         int dictId = Integer.valueOf(request.getParameter("id"));
@@ -79,6 +89,7 @@ public class DictController {
         }
         return "redirect:/dict/";
     }
+    @RequiresPermissions("dict:save")
     @GetMapping(value = "new")
     public String newArticle(Model model) {
         List<Dict> dict1=dictService.getDictByTypeAndStatus("类别",Constants.Status.ENABLE);
