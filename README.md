@@ -1,9 +1,9 @@
 # Teams
 create project
-maven创建org.apache.maven.archetypes:maven-archtype-webapp项目
-然后把download的src和pom.xml复制过去
-启动redis.server服务
-就可以运行项目了。
+Check out from Version Control选择git，在地址栏填入https://github.com/SiameseMiao/Teams.git
+（或maven创建org.apache.maven.archetypes:maven-archtype-webapp项目，然后把download的src和pom.xml复制过去）
+configurations添加Maven，Command line栏填入：tomcat7:run
+启动redis.server服务,就可以运行项目了。
 
 小组成员一共五名：刘畅、庄莉，陈杰、郑春雨、杨越
 
@@ -15,7 +15,7 @@ maven创建org.apache.maven.archetypes:maven-archtype-webapp项目
 
 陈杰：文件上传与下载以及相应页面整合。
 
-郑春雨：数据字典部分，admin下前端页面
+郑春雨：排序、数据字典部分，admin下前端页面
 
 杨越：RBAC权限模型的补充，改造user前端页面
 
@@ -29,7 +29,7 @@ maven创建org.apache.maven.archetypes:maven-archtype-webapp项目
 
 全都涉及到Java数据类型与数据库类型的关系
 
-郑春雨
+郑春雨（部分前端页面与数据字典后端功能实现）
 
 github账号：Zhengchunyu2016012011学号：2016012011
 
@@ -47,7 +47,7 @@ github账号：Zhengchunyu2016012011学号：2016012011
 
 dict.html：（Dict.java、DictDao.java、DictService.java、DictServiceImpl.java、DictController.java）
 
-数据字典后台管理界面
+数据字典后台管理界面（dict.html）
 
 该界面主要由两部分组成，网页顶部导航栏，以及网页的主体内容部分；导航栏的部分主要是由左部的其他管理界面的链接构成，右部是由一个搜索框以及一个搜索按钮构
 
@@ -55,7 +55,7 @@ dict.html：（Dict.java、DictDao.java、DictService.java、DictServiceImpl.jav
 
 以及编辑按钮时会出现弹出窗口，点击编辑时该条记录的原本内容也会出现在弹窗内，管理人员可以通过更改该条记录的某个属性的值对其进行更新。
 
-文章管理后台界面
+文章管理后台界面(articleManage.html)
 
 该界面主要由网页顶部导航栏、网页的主体内容部分以及底部的记录部分组成；导航栏的部分主要是由左部的其他管理界面的链接构成，右部是由一个搜索框以及一个搜索
 
@@ -65,7 +65,7 @@ dict.html：（Dict.java、DictDao.java、DictService.java、DictServiceImpl.jav
 
 以及文件进行编辑更改。
 
-栏目管理后台界面
+栏目管理后台界面(columnManage.html)
 
 该界面主要由网页顶部导航栏，以及网页的主体内容部分两个部分组成；导航栏的部分主要是其他管理界面的链接构成，页面的主体部分是由一个表格组成，用来存放后台
 
@@ -75,7 +75,7 @@ dict.html：（Dict.java、DictDao.java、DictService.java、DictServiceImpl.jav
 
 对其进行更新。点击二级的添加竞赛，就会进入新建竞赛界面，管理人员可以通过输入想要的内容添加文章。
 
-用户管理后台界面
+用户管理后台界面(userManagerPage.html)
 
 该界面主要由网页顶部导航栏，以及网页的主体内容部分两部分组成；导航栏的部分主要是由左部的其他管理界面的链接构成，右部是由一个搜索框以及一个搜索按钮构
 
@@ -83,7 +83,7 @@ dict.html：（Dict.java、DictDao.java、DictService.java、DictServiceImpl.jav
 
 添加、编辑、删除来对用户进行管理，点击编辑时该条记录的原本内容也会出现在弹窗内，管理人员可以通过更改该条记录的某个属性的值对其进行更新。
 
-资源存储后台管理界面
+资源存储后台管理界面(resourceStore.html)
 
 该界面主要由网页顶部导航栏，以及网页的主体内容部分两部分组成；导航栏的部分主要是由其他管理界面的链接构成，页面的主体部分是由一个表格组成，用来存放后台
 
@@ -91,13 +91,13 @@ dict.html：（Dict.java、DictDao.java、DictService.java、DictServiceImpl.jav
 
 改该条记录的某个属性的值对其进行更新。
 
-新添文章页面
+新添文章页面(articleNew.html)
 
 该界面主要由网页顶部导航栏，以及网页的主体内容部分两部分组成；导航栏的部分主要是由其他管理界面的链接构成，页面的主体部分是由一个Form表单组成，管理人
 
 员可在该页面输入信息添加竞赛的文章内容进行提交。 
 
-庄莉
+庄莉（仅后端功能实现以及数据显示）
 
 github账号：SiameseMiao  idea注释名：Siamese_miao  学号：2016012034
 
@@ -171,7 +171,7 @@ competitionPage.html：（SearchController.java）
 
 mainContainer.html：（SearchController.java）
 
-陈杰
+陈杰（仅后端功能实现以及数据显示）
 
 github账号：CJFQT123   idea注释名：cj      学号：2016012099
 
@@ -191,9 +191,7 @@ github账号：CJFQT123   idea注释名：cj      学号：2016012099
 
 在此页面可以删除竞赛文件路径，点击编辑后可以修改竞赛文件的名称和地址
 
-相关代码：
-
-UploadController，ResourceStore，StoreDao，StoreService，StoreServicelmpl和CompetitionController的上传功能相关代码
+resourceStore.html、mainContainer.html、articleNew.html：（UploadController.java、ResourceStore.java、StoreDao.java、StoreService.java、StoreServicelmpl.java 、CompetitionController.java的上传功能相关代码）
 
 杨越
 
