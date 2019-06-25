@@ -1,9 +1,12 @@
 package cn.work.controller;
 
 import cn.work.controller.request.Accout;
+import cn.work.entity.Category;
 import cn.work.entity.User;
+import cn.work.service.CategoryService;
 import cn.work.service.UserRoleService;
 import cn.work.service.UserService;
+import cn.work.util.Constants;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -63,8 +67,7 @@ public class UserController {
             model.addAttribute("userList",userService.getAllUsers());
             return "redirect:manager";
         }
-        model.addAttribute(accout);
-        return "index";
+        return "redirect:/index.html";
     }
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String register(@Valid Accout newUser, Model model, HttpServletRequest request){
